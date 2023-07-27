@@ -10,13 +10,14 @@ import javax.persistence.*;
 public class SubCategory {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sub_category_id_sub_category_seq")
+    @SequenceGenerator(name = "sub_category_id_sub_category_seq", sequenceName = "sub_category_id_sub_category_seq", allocationSize = 1)
     @Column(name = "id_sub_category")
     private Integer id;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "id_category")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_category", nullable = false)
     private Category category;
 
 

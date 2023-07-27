@@ -11,11 +11,23 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  //, generator = "category_id_category_seq")
+//    @SequenceGenerator(name = "category_id_category_seq", sequenceName = "category_id_category_seq", allocationSize = 1)
+    @Column(name = "id_category")
     private Integer id;
     private String description;
 
-    @OneToMany(mappedBy = "category")
-    private List<SubCategory> subCategorys;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SubCategory> subCategories;
+
+
+    public List<SubCategory> getSubCategories() {
+        return subCategories;
+    }
+
+    public void setSubCategories(List<SubCategory> subCategories) {
+        this.subCategories = subCategories;
+    }
+
 
 }

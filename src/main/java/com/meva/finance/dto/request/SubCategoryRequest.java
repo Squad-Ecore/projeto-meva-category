@@ -1,5 +1,6 @@
 package com.meva.finance.dto.request;
 
+import com.meva.finance.entity.Category;
 import com.meva.finance.entity.SubCategory;
 import lombok.Data;
 
@@ -10,8 +11,10 @@ public class SubCategoryRequest {
     private String description;
 
     public SubCategory convert(SubCategory subCategory) {
-        this.id = subCategory.getId();
-        this.description = subCategory.getDescription();
+
+        subCategory.setId(this.id);
+        subCategory.setDescription(this.description);
+        subCategory.setCategory(subCategory.getCategory());
 
         return subCategory;
     }

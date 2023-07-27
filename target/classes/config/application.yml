@@ -10,7 +10,7 @@ spring:
   # Database
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/Category
+    url: jdbc:postgresql://localhost:5432/category
     username: postgres
     password: postgres
   # JPA properties
