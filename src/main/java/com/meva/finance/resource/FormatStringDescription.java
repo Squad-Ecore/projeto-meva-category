@@ -1,4 +1,4 @@
-package com.meva.finance.formatString;
+package com.meva.finance.resource;
 
 import org.springframework.stereotype.Component;
 
@@ -10,14 +10,11 @@ public class FormatStringDescription {
 
         String[] palavras = string.split("\\s+");
 
-
         for (String palavra : palavras) {
             if (palavra.length() >= 3) {
                 newString.append(palavra).append(" ");
             }
         }
         return newString.toString().trim();
-
     }
-
 }

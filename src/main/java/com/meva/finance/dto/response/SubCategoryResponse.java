@@ -3,14 +3,22 @@ package com.meva.finance.dto.response;
 import com.meva.finance.entity.SubCategory;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class SubCategoryResponse {
 
-    private Integer id;
-    private String description;
+    private List<SubCategory> subCategories;
 
-    public SubCategoryResponse(SubCategory subCategory) {
-        this.id = subCategory.getId();
-        this.description = subCategory.getDescription();
+    public SubCategoryResponse(List<SubCategory> subCategories) {
+        this.subCategories = subCategories;
+    }
+
+    public List<SubCategory> getSubCategories() {
+        return subCategories;
+    }
+
+    public void setSubCategories(List<SubCategory> subCategories) {
+        this.subCategories = subCategories;
     }
 }

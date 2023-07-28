@@ -2,18 +2,20 @@
 package com.meva.finance.api;
 
 import com.meva.finance.dto.request.CategoryRequest;
+import com.meva.finance.dto.request.SubCategoryRequest;
 import com.meva.finance.dto.response.CategoryResponse;
+import com.meva.finance.dto.response.SubCategoryResponse;
 import com.meva.finance.entity.Category;
+import com.meva.finance.entity.SubCategory;
 import com.meva.finance.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -30,5 +32,7 @@ public class Controller {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    // Implementar o Método GET
 
 }
