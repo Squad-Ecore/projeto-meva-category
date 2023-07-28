@@ -10,15 +10,4 @@ public class SubCategoryResponse {
 
     private List<SubCategory> subCategories;
 
-    public SubCategoryResponse(List<SubCategory> subCategories) {
-        this.subCategories = subCategories;
-    }
-
-    public List<SubCategory> getSubCategories() {
-        return subCategories;
-    }
-
-    public void setSubCategories(List<SubCategory> subCategories) {
-        this.subCategories = subCategories;
-    }
 }

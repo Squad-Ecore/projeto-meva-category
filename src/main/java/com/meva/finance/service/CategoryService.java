@@ -20,16 +20,11 @@ public class CategoryService {
 
     private CategoryRepository categoryRepository;
     private SubCategoryRepository subCategoryRepository;
-//    private FormatStringDescription formatStringDescription;
 
     @Autowired
-    public CategoryService(
-            CategoryRepository categoryRepository,
-            SubCategoryRepository subCategoryRepository) {
-        //FormatStringDescription formatStringDescription) {
+    public CategoryService(CategoryRepository categoryRepository, SubCategoryRepository subCategoryRepository) {
         this.categoryRepository = categoryRepository;
         this.subCategoryRepository = subCategoryRepository;
-        //this.formatStringDescription = formatStringDescription;
     }
 
 
@@ -43,11 +38,14 @@ public class CategoryService {
             List<SubCategory> subCategories = new ArrayList<>();
 
             for (SubCategoryRequest subCategoryRequest : subCategoryRequests) {
-                SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
 
-//                formatStringDescription.removeStringPequenas(subCategory.getDescription());
+                //
+                SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
+                //
 
                 Category category = categoryRequest.convert(new Category());
+
+                validSubCategory(subCategory);
 
                 category.setSubCategories(subCategories);
 
@@ -55,7 +53,6 @@ public class CategoryService {
                 categoryRepository.save(category);
 
 
-                validSubCategory(subCategory);
 //                subCategory.setCategory(category);
 
 
@@ -68,22 +65,6 @@ public class CategoryService {
 
 
     // IMPLEMENTAR UMA LIST PARA RETORNAR AS SUBCATEGORIES COM AS DESCRIPTION
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private void validCategory(CategoryRequest categoryRequest) {
@@ -104,7 +85,7 @@ public class CategoryService {
             throw new ValidException("Id Null");
         }
 
-        if (idSubCategory == 0 || subCategoryRepository.existsById(idSubCategory)) {
+        if (idSubCategory == 0) {
 
             return subCategoryRepository.save(subCategory);
 
@@ -113,4 +94,10 @@ public class CategoryService {
         }
         throw new ValidException("id não encontrado");
     }
+
+    
+
+    // desenvolver a category e subCategory onde salva normal juntamento com o método GET
+    // O método GET vai pegar a descricao passada e vai buscar e entregar para mim no JSON
+
 }

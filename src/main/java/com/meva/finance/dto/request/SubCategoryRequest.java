@@ -12,11 +12,6 @@ public class SubCategoryRequest {
     private Integer id;
     private String description;
 
-    public SubCategoryRequest(Integer id, String description) {
-        this.id = id;
-        this.description = description;
-    }
-
     public SubCategory convert(SubCategory subCategory) {
         FormatStringDescription formatStringDescription = new FormatStringDescription();
 
