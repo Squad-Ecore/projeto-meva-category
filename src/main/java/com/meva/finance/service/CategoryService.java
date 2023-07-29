@@ -29,38 +29,46 @@ public class CategoryService {
 
 
     public Category save(CategoryRequest categoryRequest) throws ValidException {
+//        if (categoryRepository.findById(categoryRequest.getId()).isPresent()) {
+//            throw new ValidException("Category já existe no banco de dados");
+//        }
         validCategory(categoryRequest);
+        Category category = categoryRequest.convert(new Category());
 
+        categoryRepository.save(category);
 
         List<SubCategoryRequest> subCategoryRequests = categoryRequest.getSubCategoryRequests();
         if (subCategoryRequests != null && !subCategoryRequests.isEmpty()) {
 
             List<SubCategory> subCategories = new ArrayList<>();
 
+            category.setSubCategories(subCategories);
+
+//            if (category.getId() == 0) {
+//                categoryRepository.save(category);
+//            }
+
+
             for (SubCategoryRequest subCategoryRequest : subCategoryRequests) {
-
-                //
                 SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
-                //
+                subCategory.setCategory(category);
 
-                Category category = categoryRequest.convert(new Category());
+                if (subCategory.getId() != null || subCategory.getId() > 0) {
+
+                    SubCategory existSubCategory = subCategoryRepository.findById(subCategory.getId()).orElse(null);
+                    if (existSubCategory != null) {
+                        existSubCategory.setDescription(subCategory.getDescription());
+                        subCategory = existSubCategory;
+                    }
+                }
 
                 validSubCategory(subCategory);
-
-                category.setSubCategories(subCategories);
-
-                subCategory.setCategory(category);
-                categoryRepository.save(category);
-
-
-//                subCategory.setCategory(category);
-
-
-//                return categoryRepository.save(category);
-                return category;
+                subCategories.add(subCategory);
             }
+            category.setSubCategories(subCategories);
         }
-        throw new ValidException("Erro relacionado a Category");
+        return category;
+//        throw new ValidException("Erro relacionado a Category");
     }
 
 
@@ -81,21 +89,19 @@ public class CategoryService {
     private SubCategory validSubCategory(SubCategory subCategory) {
         Integer idSubCategory = subCategory.getId();
 
-        if (Objects.isNull(idSubCategory)) {
-            throw new ValidException("Id Null");
+        if (Objects.isNull(idSubCategory) || idSubCategory == 0) {
+//            throw new ValidException("Id Null");
+            subCategoryRepository.save(subCategory);
         }
-
-        if (idSubCategory == 0) {
-
-            return subCategoryRepository.save(subCategory);
-
+        if (subCategoryRepository.existsById(idSubCategory)) {
+            throw new ValidException("id Sub_category já existe");
         } else if (subCategory.getDescription().isEmpty()) {
             throw new ValidException("description empty");
         }
-        throw new ValidException("id não encontrado");
+
+        return subCategory;
     }
 
-    
 
     // desenvolver a category e subCategory onde salva normal juntamento com o método GET
     // O método GET vai pegar a descricao passada e vai buscar e entregar para mim no JSON
