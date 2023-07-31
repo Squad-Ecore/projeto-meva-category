@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FormatStringDescription {
 
-    public String removeStringPequenas(String string) {
+    public static String removeStringPequenas(String string) {
         StringBuilder newString = new StringBuilder();
 
         String[] palavras = string.split("\\s+");

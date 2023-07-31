@@ -13,17 +13,22 @@ public class SubCategoryRequest {
     private String description;
 
     public SubCategory convert(SubCategory subCategory) {
-        FormatStringDescription formatStringDescription = new FormatStringDescription();
 
         subCategory.setId(this.id);
 
-        subCategory.setDescription(formatStringDescription.removeStringPequenas(this.description));
+//        subCategory.setDescription(FormatStringDescription.removeStringPequenas(this.description));
+//
+//        subCategory.setDescription(subCategory.getDescription());
 
-        subCategory.setDescription(subCategory.getDescription());
+        subCategory.setDescription(formatDescription(this.description));
 
         subCategory.setCategory(subCategory.getCategory());
 
         return subCategory;
+    }
+
+    public String formatDescription(String description) {
+        return FormatStringDescription.removeStringPequenas(this.description);
     }
 
 }

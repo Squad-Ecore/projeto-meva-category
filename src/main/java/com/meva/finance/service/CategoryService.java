@@ -10,10 +10,9 @@ import com.meva.finance.repository.SubCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -76,25 +75,66 @@ public class CategoryService {
 //    }
 
 
-    public Category saveCategory(CategoryRequest categoryRequest) {
-        Category category = categoryRequest.convert(new Category());
-        categoryRepository.save(category);
-
-        List<SubCategoryRequest> subCategoryRequests = categoryRequest.getSubCategoryRequests();
-
-        if (subCategoryRequests != null && !subCategoryRequests.isEmpty()) {
-            for (SubCategoryRequest subCategoryRequest : subCategoryRequests) {
-
-                SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
-                subCategory.setDescription(subCategoryRequest.getDescription());
-                subCategory.setCategory(category);
+//    public Category saveCategory(CategoryRequest categoryRequest) {
+//        Category category = categoryRequest.convert(new Category());
+//        categoryRepository.save(category);
+//
+//        List<SubCategoryRequest> subCategoryRequests = categoryRequest.getSubCategoryRequests();
+//
+//        if (subCategoryRequests != null && !subCategoryRequests.isEmpty()) {
+//            for (SubCategoryRequest subCategoryRequest : subCategoryRequests) {
+//
+//                SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
+//                subCategory.setDescription(subCategoryRequest.getDescription());
+//                subCategory.setCategory(category);
 //                category.getSubCategories().add(subCategory);
+//
+//                validSubCategory(subCategory);
+//            }
+//        }
+//        return category;
+//    }
 
-                validSubCategory(subCategory);
-            }
+
+    public Category saveCategory(CategoryRequest categoryRequest){
+        Category category = categoryRequest.convert(new Category());
+
+        return categoryRepository.save(category);
+    }
+
+
+    public SubCategory saveSubCategory(Integer idCategory, SubCategoryRequest subCategoryRequest){
+        Optional<Category> optCategory = categoryRepository.findById(idCategory);
+        if (optCategory.isPresent()){
+            SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
+            subCategory.setCategory(optCategory.get());
+
+            return subCategoryRepository.save(subCategory);
+
+
         }
-        return category;
+        throw new ValidException("NAO_CATEGORIZADO");
 
+    }
+
+
+
+
+
+
+
+
+
+
+    public String findIdCategoryInSubCategory(String description) throws ValidException {
+        SubCategory subCategoryGetDescription = subCategoryRepository.findByDescription(description);
+
+
+        if (subCategoryGetDescription != null) {
+            return subCategoryGetDescription.getCategory().getDescription();
+        } else {
+            throw new ValidException("NAO_CATEGORIZADO");
+        }
     }
 
 
