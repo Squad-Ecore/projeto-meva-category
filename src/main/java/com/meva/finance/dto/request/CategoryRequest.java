@@ -18,7 +18,6 @@ public class CategoryRequest {
         category.setId(this.id);
         category.setDescription(this.description);
 
-
         return category;
     }
 }

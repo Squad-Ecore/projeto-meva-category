@@ -28,82 +28,92 @@ public class CategoryService {
     }
 
 
-    public Category save(CategoryRequest categoryRequest) throws ValidException {
-//        if (categoryRepository.findById(categoryRequest.getId()).isPresent()) {
-//            throw new ValidException("Category já existe no banco de dados");
-//        }
-        validCategory(categoryRequest);
-        Category category = categoryRequest.convert(new Category());
-
-        categoryRepository.save(category);
-
-        List<SubCategoryRequest> subCategoryRequests = categoryRequest.getSubCategoryRequests();
-        if (subCategoryRequests != null && !subCategoryRequests.isEmpty()) {
-
-            List<SubCategory> subCategories = new ArrayList<>();
-
-            category.setSubCategories(subCategories);
-
-//            if (category.getId() == 0) {
-//                categoryRepository.save(category);
+//    public Category save(CategoryRequest categoryRequest) throws ValidException {
+//
+//        validCategory(categoryRequest);
+//
+//        List<SubCategory> subCategories = new ArrayList<>();
+//        List<SubCategoryRequest> subCategoryRequests = categoryRequest.getSubCategoryRequests();
+//
+//        Category category = categoryRequest.convert(new Category());
+//        categoryRepository.save(category);
+//
+//
+////        subCategories.add(new SubCategory());
+//        if (subCategoryRequests != null && !subCategoryRequests.isEmpty()) {
+//            for (SubCategoryRequest subCategoryRequest : subCategoryRequests) {
+//                SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
+//
+////                category.setSubCategories(subCategories);
+//
+////                if (category.getId() == 0) {
+////                    categoryRepository.save(category);
+////                }
+//
+//                subCategory.setCategory(category);
+//                validSubCategory(subCategory);
+//                subCategories.add(subCategory);
+//
+//
 //            }
-
-
-            for (SubCategoryRequest subCategoryRequest : subCategoryRequests) {
-                SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
-                subCategory.setCategory(category);
-
-                if (subCategory.getId() != null || subCategory.getId() > 0) {
-
-                    SubCategory existSubCategory = subCategoryRepository.findById(subCategory.getId()).orElse(null);
-                    if (existSubCategory != null) {
-                        existSubCategory.setDescription(subCategory.getDescription());
-                        subCategory = existSubCategory;
-                    }
-                }
-
-                validSubCategory(subCategory);
-                subCategories.add(subCategory);
-            }
-            category.setSubCategories(subCategories);
-        }
-        return category;
-//        throw new ValidException("Erro relacionado a Category");
-    }
+//        }
+//        category.setSubCategories(subCategories);
+//
+//        return category;
+//    }
 
 
     // IMPLEMENTAR UMA LIST PARA RETORNAR AS SUBCATEGORIES COM AS DESCRIPTION
 
+//    public Category saveCategory(CategoryRequest categoryRequest) {
+//        validCategory(categoryRequest);
+//
+//        Category category = categoryRequest.convert(new Category());
+//        category.setSubCategories(new ArrayList<>());
+//
+//        return categoryRepository.save(category);
+//
+//    }
 
-    private void validCategory(CategoryRequest categoryRequest) {
-        Integer idCategory = categoryRequest.getId();
 
-        if (Objects.isNull(idCategory)) {
-            throw new ValidException("id category Null");
+    public Category saveCategory(CategoryRequest categoryRequest) {
+        Category category = categoryRequest.convert(new Category());
+        categoryRepository.save(category);
+
+        List<SubCategoryRequest> subCategoryRequests = categoryRequest.getSubCategoryRequests();
+
+        if (subCategoryRequests != null && !subCategoryRequests.isEmpty()) {
+            for (SubCategoryRequest subCategoryRequest : subCategoryRequests) {
+
+                SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
+                subCategory.setDescription(subCategoryRequest.getDescription());
+                subCategory.setCategory(category);
+//                category.getSubCategories().add(subCategory);
+
+                validSubCategory(subCategory);
+            }
         }
-        if (categoryRequest.getDescription().isEmpty()) {
-            throw new ValidException("Description category vazia");
-        }
-    }
+        return category;
 
-    private SubCategory validSubCategory(SubCategory subCategory) {
-        Integer idSubCategory = subCategory.getId();
-
-        if (Objects.isNull(idSubCategory) || idSubCategory == 0) {
-//            throw new ValidException("Id Null");
-            subCategoryRepository.save(subCategory);
-        }
-        if (subCategoryRepository.existsById(idSubCategory)) {
-            throw new ValidException("id Sub_category já existe");
-        } else if (subCategory.getDescription().isEmpty()) {
-            throw new ValidException("description empty");
-        }
-
-        return subCategory;
     }
 
 
     // desenvolver a category e subCategory onde salva normal juntamento com o método GET
     // O método GET vai pegar a descricao passada e vai buscar e entregar para mim no JSON
+
+
+    public void validSubCategory(SubCategory subCategory) {
+        Integer idSubCategory = subCategory.getId();
+
+//        if (subCategoryRepository.existsById(idSubCategory)) {
+//            throw new ValidException("id subCategory existe");
+        if (subCategory.getDescription().isEmpty()) {
+            throw new ValidException("description subCategory is empty");
+        }
+
+        if (Objects.isNull(idSubCategory) || idSubCategory == 0) {
+            subCategoryRepository.save(subCategory);
+        }
+    }
 
 }

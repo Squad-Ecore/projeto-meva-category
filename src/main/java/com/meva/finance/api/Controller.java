@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
-
 @Slf4j
 @RestController
 @RequestMapping("/users")
@@ -25,14 +23,21 @@ public class Controller {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/save")
+    @PostMapping("/save/category")
     public ResponseEntity<CategoryResponse> save(@RequestBody CategoryRequest categoryRequest) {
-        Category category = categoryService.save(categoryRequest);
+        Category category = categoryService.saveCategory(categoryRequest);
         CategoryResponse response = new CategoryResponse(category);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    // Implementar o Método GET
+//    @PostMapping("/save/{id}/subcategory")
+//    public ResponseEntity<SubCategoryResponse> saveSubCategory(@PathVariable Integer id, @RequestBody SubCategoryRequest subCategoryRequest){
+//        SubCategory subCategory = categoryService.saveSubCategory(id, subCategoryRequest);
+//        SubCategoryResponse response = new SubCategoryResponse(subCategory);
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+//
+//    }
 
 }
