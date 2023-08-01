@@ -96,34 +96,38 @@ public class CategoryService {
 //    }
 
 
-    public Category saveCategory(CategoryRequest categoryRequest){
+    public Category saveCategory(CategoryRequest categoryRequest) {
         Category category = categoryRequest.convert(new Category());
 
         return categoryRepository.save(category);
     }
 
 
-    public SubCategory saveSubCategory(Integer idCategory, SubCategoryRequest subCategoryRequest){
+    public SubCategory saveSubCategory(Integer idCategory, SubCategoryRequest subCategoryRequest) {
         Optional<Category> optCategory = categoryRepository.findById(idCategory);
-        if (optCategory.isPresent()){
+        if (optCategory.isPresent()) {
             SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
             subCategory.setCategory(optCategory.get());
 
             return subCategoryRepository.save(subCategory);
-
-
         }
         throw new ValidException("NAO_CATEGORIZADO");
-
     }
 
 
+    public List<Category> findAllCategory() {
+        return categoryRepository.findAll();
+    }
 
+    public void deleteCategory(Integer idCategory)  throws ValidException{
+        Optional<Category> category = categoryRepository.findById(idCategory);
+        try {
+        category.ifPresent(category1 -> {categoryRepository.delete(category1);});
+        } catch (ValidException ex){
+            throw new ValidException("Category Not Found");
+        }
 
-
-
-
-
+    }
 
 
     public String findIdCategoryInSubCategory(String description) throws ValidException {

@@ -1,5 +1,6 @@
 package com.meva.finance.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -11,8 +12,6 @@ import java.util.List;
 @Table(name = "category")
 public class Category {
 
-
-    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_category")
@@ -20,7 +19,7 @@ public class Category {
     private String description;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("category")
     private List<SubCategory> subCategories = new ArrayList<>();
-
 
 }

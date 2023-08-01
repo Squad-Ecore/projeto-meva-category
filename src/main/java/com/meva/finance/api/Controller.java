@@ -7,12 +7,13 @@ import com.meva.finance.dto.response.CategoryResponse;
 import com.meva.finance.entity.Category;
 import com.meva.finance.entity.SubCategory;
 import com.meva.finance.service.CategoryService;
-import io.swagger.models.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -37,12 +38,26 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @GetMapping("/listSubCategory")
+    public List<Category> findAllSubCategory() {
+
+        return categoryService.findAllCategory();
+    }
+
 
     @GetMapping("/getCategoryByExtract/{description}")
     public ResponseEntity<String> findByDescriptionSubCategory(@PathVariable String description) {
         String idCategory = categoryService.findIdCategoryInSubCategory(description);
 
-        return ResponseEntity.ok("Category" + idCategory);
+        return ResponseEntity.ok("Category: " + idCategory);
+    }
+
+
+    @DeleteMapping("/delete/category/{idCategory}")
+    public ResponseEntity<String> deleteCategory(@PathVariable Integer idCategory) {
+        categoryService.deleteCategory(idCategory);
+
+        return ResponseEntity.ok("Category Deletada");
     }
 
 }

@@ -12,9 +12,10 @@ public class FormatStringDescription {
 
         for (String palavra : palavras) {
             if (palavra.length() >= 3) {
-                newString.append(palavra).append(" ");
+                newString.append(palavra);
             }
         }
-        return newString.toString().trim();
+
+        return newString.toString();
     }
 }
