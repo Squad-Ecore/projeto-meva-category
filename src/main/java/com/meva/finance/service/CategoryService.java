@@ -26,82 +26,11 @@ public class CategoryService {
         this.subCategoryRepository = subCategoryRepository;
     }
 
-
-//    public Category save(CategoryRequest categoryRequest) throws ValidException {
-//
-//        validCategory(categoryRequest);
-//
-//        List<SubCategory> subCategories = new ArrayList<>();
-//        List<SubCategoryRequest> subCategoryRequests = categoryRequest.getSubCategoryRequests();
-//
-//        Category category = categoryRequest.convert(new Category());
-//        categoryRepository.save(category);
-//
-//
-////        subCategories.add(new SubCategory());
-//        if (subCategoryRequests != null && !subCategoryRequests.isEmpty()) {
-//            for (SubCategoryRequest subCategoryRequest : subCategoryRequests) {
-//                SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
-//
-////                category.setSubCategories(subCategories);
-//
-////                if (category.getId() == 0) {
-////                    categoryRepository.save(category);
-////                }
-//
-//                subCategory.setCategory(category);
-//                validSubCategory(subCategory);
-//                subCategories.add(subCategory);
-//
-//
-//            }
-//        }
-//        category.setSubCategories(subCategories);
-//
-//        return category;
-//    }
-
-
-    // IMPLEMENTAR UMA LIST PARA RETORNAR AS SUBCATEGORIES COM AS DESCRIPTION
-
-//    public Category saveCategory(CategoryRequest categoryRequest) {
-//        validCategory(categoryRequest);
-//
-//        Category category = categoryRequest.convert(new Category());
-//        category.setSubCategories(new ArrayList<>());
-//
-//        return categoryRepository.save(category);
-//
-//    }
-
-
-//    public Category saveCategory(CategoryRequest categoryRequest) {
-//        Category category = categoryRequest.convert(new Category());
-//        categoryRepository.save(category);
-//
-//        List<SubCategoryRequest> subCategoryRequests = categoryRequest.getSubCategoryRequests();
-//
-//        if (subCategoryRequests != null && !subCategoryRequests.isEmpty()) {
-//            for (SubCategoryRequest subCategoryRequest : subCategoryRequests) {
-//
-//                SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
-//                subCategory.setDescription(subCategoryRequest.getDescription());
-//                subCategory.setCategory(category);
-//                category.getSubCategories().add(subCategory);
-//
-//                validSubCategory(subCategory);
-//            }
-//        }
-//        return category;
-//    }
-
-
     public Category saveCategory(CategoryRequest categoryRequest) {
         Category category = categoryRequest.convert(new Category());
 
         return categoryRepository.save(category);
     }
-
 
     public SubCategory saveSubCategory(Integer idCategory, SubCategoryRequest subCategoryRequest) {
         Optional<Category> optCategory = categoryRepository.findById(idCategory);
@@ -114,19 +43,51 @@ public class CategoryService {
         throw new ValidException("NAO_CATEGORIZADO");
     }
 
-
     public List<Category> findAllCategory() {
         return categoryRepository.findAll();
     }
 
-    public void deleteCategory(Integer idCategory)  throws ValidException{
+    public void deleteCategory(Integer idCategory) throws ValidException {
         Optional<Category> category = categoryRepository.findById(idCategory);
         try {
-        category.ifPresent(category1 -> {categoryRepository.delete(category1);});
-        } catch (ValidException ex){
+            category.ifPresent(category1 -> {
+                categoryRepository.delete(category1);
+            });
+        } catch (ValidException ex) {
             throw new ValidException("Category Not Found");
         }
+    }
 
+    public void deleteSubCategory(Integer idSubCategory) {
+        Optional<SubCategory> subCategory = subCategoryRepository.findById(idSubCategory);
+        try {
+            subCategory.ifPresent(subCategory1 -> {
+                subCategoryRepository.delete(subCategory1);
+            });
+        } catch (ValidException ex) {
+            throw new ValidException("SubCategory Not Found");
+        }
+    }
+
+    public Category updateCategory(CategoryRequest categoryRequest) {
+        Optional<Category> category = categoryRepository.findById(categoryRequest.getId());
+        if (category.isPresent()) {
+            Category newCategory = categoryRequest.convert(new Category());
+
+            return categoryRepository.save(newCategory);
+        }
+        throw new ValidException("Category Not Found");
+    }
+
+    public SubCategory updateSubCategory(SubCategoryRequest subCategoryRequest) {
+        Optional<SubCategory> subCategory = subCategoryRepository.findById(subCategoryRequest.getId());
+
+        if (subCategory.isPresent()) {
+            SubCategory newSubCategory = subCategoryRequest.convert(new SubCategory());
+
+            return subCategoryRepository.save(newSubCategory);
+        }
+        throw new ValidException("SubCategory Not Found");
     }
 
 
@@ -149,8 +110,6 @@ public class CategoryService {
     public void validSubCategory(SubCategory subCategory) {
         Integer idSubCategory = subCategory.getId();
 
-//        if (subCategoryRepository.existsById(idSubCategory)) {
-//            throw new ValidException("id subCategory existe");
         if (subCategory.getDescription().isEmpty()) {
             throw new ValidException("description subCategory is empty");
         }

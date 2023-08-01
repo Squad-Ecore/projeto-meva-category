@@ -60,4 +60,28 @@ public class Controller {
         return ResponseEntity.ok("Category Deletada");
     }
 
+    @DeleteMapping("delete/subcategory/{idSubCategory}")
+    public ResponseEntity<String> deleteSubCategory(@PathVariable Integer idSubCategory) {
+        categoryService.deleteSubCategory(idSubCategory);
+
+        return ResponseEntity.ok("SubCategory Deletada");
+    }
+
+
+    @PutMapping("/update/category")
+    public ResponseEntity<CategoryResponse> updateCategory(@RequestBody CategoryRequest categoryRequest) {
+        Category category = categoryService.updateCategory(categoryRequest);
+        CategoryResponse response = new CategoryResponse(category);
+
+        return ResponseEntity.ok(response);
+    }
+
+
+    @PutMapping("/update/subcategory")
+    public ResponseEntity<String> updateSubCategory(@RequestBody SubCategoryRequest subCategoryRequest) {
+        categoryService.updateSubCategory(subCategoryRequest);
+
+        return ResponseEntity.ok("SubCategory update");
+    }
+
 }
