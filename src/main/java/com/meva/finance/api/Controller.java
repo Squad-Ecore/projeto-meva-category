@@ -38,7 +38,7 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping("/listSubCategory")
+    @GetMapping("/listCategory")
     public List<Category> findAllSubCategory() {
 
         return categoryService.findAllCategory();

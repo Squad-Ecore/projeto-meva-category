@@ -18,7 +18,7 @@ public class Category {
     private Integer id;
     private String description;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.MERGE, orphanRemoval = true)
     @JsonIgnoreProperties("category")
     private List<SubCategory> subCategories = new ArrayList<>();
 
