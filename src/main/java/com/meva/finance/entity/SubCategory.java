@@ -20,5 +20,11 @@ public class SubCategory {
     @JoinColumn(name = "id_category", nullable = false)
     private Category category;
 
-
+    @Override
+    public String toString() {
+        return "SubCategory{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

@@ -1,0 +1,7 @@
+com/meva/finance/dto/request/SubCategoryRequestTest.class
+com/meva/finance/entity/SubCategoryTest.class
+com/meva/finance/api/ControllerTest.class
+com/meva/finance/dto/request/CategoryRequestTest.class
+com/meva/finance/service/CategoryServiceTest.class
+com/meva/finance/ApplicationTest.class
+com/meva/finance/entity/CategoryTest.class

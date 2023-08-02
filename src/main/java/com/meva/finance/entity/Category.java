@@ -22,4 +22,11 @@ public class Category {
     @JsonIgnoreProperties("category")
     private List<SubCategory> subCategories = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

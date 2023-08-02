@@ -12,13 +12,15 @@ public class SubCategoryRequest {
     private Integer id;
     private String description;
 
+
+    public SubCategoryRequest(Integer id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     public SubCategory convert(SubCategory subCategory) {
 
         subCategory.setId(this.id);
-
-//        subCategory.setDescription(FormatStringDescription.removeStringPequenas(this.description));
-//
-//        subCategory.setDescription(subCategory.getDescription());
 
         subCategory.setDescription(formatDescription(this.description));
 
@@ -31,4 +33,12 @@ public class SubCategoryRequest {
         return FormatStringDescription.removeStringPequenas(this.description);
     }
 
+
+    @Override
+    public String toString() {
+        return "SubCategoryRequest{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

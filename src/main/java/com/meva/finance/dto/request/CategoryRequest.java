@@ -20,4 +20,12 @@ public class CategoryRequest {
 
         return category;
     }
+
+    @Override
+    public String toString() {
+        return "CategoryRequest{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
