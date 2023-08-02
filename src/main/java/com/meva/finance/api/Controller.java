@@ -77,9 +77,9 @@ public class Controller {
     }
 
 
-    @PutMapping("/update/subcategory")
-    public ResponseEntity<String> updateSubCategory(@RequestBody SubCategoryRequest subCategoryRequest) {
-        categoryService.updateSubCategory(subCategoryRequest);
+    @PutMapping("/update/subcategory/category/{idCategory}")
+    public ResponseEntity<String> updateSubCategory(@PathVariable Integer idCategory, @RequestBody SubCategoryRequest subCategoryRequest) {
+        categoryService.updateSubCategory(idCategory, subCategoryRequest);
 
         return ResponseEntity.ok("SubCategory update");
     }

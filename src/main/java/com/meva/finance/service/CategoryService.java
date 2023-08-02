@@ -10,6 +10,7 @@ import com.meva.finance.repository.SubCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -79,14 +80,19 @@ public class CategoryService {
         throw new ValidException("Category Not Found");
     }
 
-    public SubCategory updateSubCategory(SubCategoryRequest subCategoryRequest) {
-        Optional<SubCategory> subCategory = subCategoryRepository.findById(subCategoryRequest.getId());
+    public SubCategory updateSubCategory(Integer idCategory, SubCategoryRequest subCategoryRequest) {
+        Optional<Category> categoryOpt = categoryRepository.findById(idCategory);
 
-        if (subCategory.isPresent()) {
-            SubCategory newSubCategory = subCategoryRequest.convert(new SubCategory());
+        if (categoryOpt.isPresent()) {
+            Optional<SubCategory> subCategory = subCategoryRepository.findById(subCategoryRequest.getId());
+            if (subCategory.isPresent()) {
+                SubCategory newSubCategory = subCategoryRequest.convert(new SubCategory());
+                newSubCategory.setCategory(categoryOpt.get());
 
-            return subCategoryRepository.save(newSubCategory);
+                return subCategoryRepository.save(newSubCategory);
+            }
         }
+
         throw new ValidException("SubCategory Not Found");
     }
 
