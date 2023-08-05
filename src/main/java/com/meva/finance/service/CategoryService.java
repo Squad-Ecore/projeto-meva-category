@@ -90,7 +90,6 @@ public class CategoryService {
                 return subCategoryRepository.save(newSubCategory);
             }
         }
-
         throw new ValidException("SubCategory Not Found");
     }
 

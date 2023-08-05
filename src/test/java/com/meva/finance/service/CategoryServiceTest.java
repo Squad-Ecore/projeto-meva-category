@@ -70,8 +70,7 @@ class CategoryServiceTest {
             categoryService.saveSubCategory(categoryRequest.getId(), subCategoryRequest);
         });
     }
-
-
+    
     @Test
     void testSaveSubCategory() {
         Mockito.when(categoryRepository.findById(categoryRequest.getId())).thenReturn(categoryOpt);
@@ -85,7 +84,6 @@ class CategoryServiceTest {
         Assertions.assertNotNull(subCategory1);
     }
 
-
     @Test
     void testListCategory() {
         Category category = categoryRequest.convert(new Category());
@@ -98,7 +96,6 @@ class CategoryServiceTest {
 
         Assertions.assertEquals(categories, result);
     }
-
 
     @Test
     void testSuccessDeleteCategory() {
@@ -119,7 +116,6 @@ class CategoryServiceTest {
         });
     }
 
-
     @Test
     void testSuccessDeleteSubCategory() {
         Mockito.when(subCategoryRepository.findById(ID)).thenReturn(subCategoryOpt);
@@ -136,6 +132,78 @@ class CategoryServiceTest {
         Assertions.assertThrows(ValidException.class, () -> {
             categoryService.deleteSubCategory(ID);
         });
+    }
+
+    @Test
+    void testUpdateCategorySuccess() {
+        Mockito.when(categoryRepository.findById(ID)).thenReturn(categoryOpt);
+
+        Category category = categoryRequest.convert(new Category());
+
+        Mockito.when(categoryRepository.save(Mockito.any(Category.class))).thenReturn(category);
+
+        Category newCategory = categoryService.updateCategory(categoryRequest);
+
+        Assertions.assertNotNull(newCategory);
+        Assertions.assertEquals(newCategory, category);
+    }
+
+    @Test
+    void testThrowExceptionUpdateCategory() {
+        Mockito.when(categoryRepository.findById(ID)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(ValidException.class, () -> {
+            categoryService.updateCategory(categoryRequest);
+        });
+    }
+
+    @Test
+    void testUpdateSubCategorySuccess() {
+        Mockito.when(categoryRepository.findById(ID)).thenReturn(categoryOpt);
+
+        Mockito.when(subCategoryRepository.findById(ID)).thenReturn(subCategoryOpt);
+        SubCategory newSubCategory = subCategoryRequest.convert(new SubCategory());
+        newSubCategory.setCategory(categoryOpt.get());
+        Mockito.when(subCategoryRepository.save(Mockito.any(SubCategory.class))).thenReturn(newSubCategory);
+
+        newSubCategory = categoryService.updateSubCategory(ID, subCategoryRequest);
+
+        Assertions.assertNotNull(newSubCategory);
+        Assertions.assertEquals(newSubCategory.getId(), subCategoryRequest.getId());
+    }
+
+    @Test
+    void testThrowExceptionUpdateSubCategory() {
+        Mockito.when(categoryRepository.findById(ID)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(ValidException.class, () -> {
+            categoryService.updateSubCategory(ID, subCategoryRequest);
+        });
+    }
+
+    @Test
+    void testFindIdCategoryInSubCategory() {
+        Category category = categoryRequest.convert(new Category());
+        SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
+        subCategory.setCategory(category);
+
+        Mockito.when(subCategoryRepository.findByDescription(subCategory.getDescription())).thenReturn(subCategory);
+        String resultDescription = categoryService.findIdCategoryInSubCategory(subCategory.getDescription());
+
+        Assertions.assertEquals(category.getDescription(), resultDescription);
+    }
+    @Test
+    void testThrowExceptionFindSubCategoryDescription() {
+        Category category = categoryRequest.convert(new Category());
+        SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
+        subCategory.setCategory(category);
+
+        subCategory.setDescription(null);
+
+        Assertions.assertThrows(ValidException.class, () -> {
+            categoryService.findIdCategoryInSubCategory(subCategory.getDescription());
+        });
+
     }
 
 
