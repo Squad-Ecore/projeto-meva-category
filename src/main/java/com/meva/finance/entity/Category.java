@@ -22,6 +22,14 @@ public class Category {
     @JsonIgnoreProperties("category")
     private List<SubCategory> subCategories = new ArrayList<>();
 
+    public Category() {
+    }
+
+    public Category(Integer id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Category{" +

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-<span class="pc bpc" id="L10" title="26 of 30 branches missed.">@Data</span>
+<span class="pc bpc" id="L10" title="17 of 30 branches missed.">@Data</span>
 @Entity
 @Table(name = &quot;category&quot;)
 public class Category {
@@ -22,9 +22,17 @@ public class Category {
     @JsonIgnoreProperties(&quot;category&quot;)
 <span class="fc" id="L23">    private List&lt;SubCategory&gt; subCategories = new ArrayList&lt;&gt;();</span>
 
+<span class="fc" id="L25">    public Category() {</span>
+<span class="fc" id="L26">    }</span>
+
+<span class="fc" id="L28">    public Category(Integer id, String description) {</span>
+<span class="fc" id="L29">        this.id = id;</span>
+<span class="fc" id="L30">        this.description = description;</span>
+<span class="fc" id="L31">    }</span>
+
     @Override
     public String toString() {
-<span class="fc" id="L27">        return &quot;Category{&quot; +</span>
+<span class="fc" id="L35">        return &quot;Category{&quot; +</span>
                 &quot;id=&quot; + id +
                 &quot;, description='&quot; + description + '\'' +
                 '}';

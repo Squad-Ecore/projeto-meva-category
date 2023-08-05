@@ -6,17 +6,17 @@ import org.springframework.stereotype.Component;
 <span class="fc" id="L6">public class FormatStringDescription {</span>
 
     public static String removeStringPequenas(String string) {
-<span class="nc" id="L9">        StringBuilder newString = new StringBuilder();</span>
+<span class="fc" id="L9">        StringBuilder newString = new StringBuilder();</span>
 
-<span class="nc" id="L11">        String[] palavras = string.split(&quot;\\s+&quot;);</span>
+<span class="fc" id="L11">        String[] palavras = string.split(&quot;\\s+&quot;);</span>
 
-<span class="nc bnc" id="L13" title="All 2 branches missed.">        for (String palavra : palavras) {</span>
-<span class="nc bnc" id="L14" title="All 2 branches missed.">            if (palavra.length() &gt;= 3) {</span>
-<span class="nc" id="L15">                newString.append(palavra);</span>
+<span class="fc bfc" id="L13" title="All 2 branches covered.">        for (String palavra : palavras) {</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">            if (palavra.length() &gt;= 3) {</span>
+<span class="fc" id="L15">                newString.append(palavra);</span>
             }
         }
 
-<span class="nc" id="L19">        return newString.toString();</span>
+<span class="fc" id="L19">        return newString.toString();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

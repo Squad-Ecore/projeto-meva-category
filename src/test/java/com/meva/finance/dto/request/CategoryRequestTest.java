@@ -1,7 +1,6 @@
 package com.meva.finance.dto.request;
 
 import com.meva.finance.entity.Category;
-import com.meva.finance.entity.SubCategory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,7 +60,8 @@ class CategoryRequestTest {
         list2.add(new SubCategoryRequest(3,"Lojas"));
         list2.add(new SubCategoryRequest(4,"Moveis"));
 
-        MyClass 
+        int hashCodeList1 = list1.hashCode();
+        int hashCodeList2 = list2.hashCode();
 
         assertNotEquals(hashCodeList1, hashCodeList2);
     }

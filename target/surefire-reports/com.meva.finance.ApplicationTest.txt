@@ -1,9 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.meva.finance.ApplicationTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 8.03 s <<< FAILURE! - in com.meva.finance.ApplicationTest
-main  Time elapsed: 0.009 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'subCategoryRequest' defined in file [/home/cristian/workspace/meva/projeto-meva-category/target/classes/com/meva/finance/dto/request/SubCategoryRequest.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'java.lang.String' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.908 s - in com.meva.finance.ApplicationTest

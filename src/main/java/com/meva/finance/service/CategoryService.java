@@ -32,7 +32,7 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public SubCategory saveSubCategory(Integer idCategory, SubCategoryRequest subCategoryRequest) {
+    public SubCategory saveSubCategory(Integer idCategory, SubCategoryRequest subCategoryRequest) throws ValidException {
         Optional<Category> optCategory = categoryRepository.findById(idCategory);
         if (optCategory.isPresent()) {
             SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
@@ -49,22 +49,21 @@ public class CategoryService {
 
     public void deleteCategory(Integer idCategory) throws ValidException {
         Optional<Category> category = categoryRepository.findById(idCategory);
-        try {
-            category.ifPresent(category1 -> {
-                categoryRepository.delete(category1);
-            });
-        } catch (ValidException ex) {
+
+        if (category.isPresent()){
+            categoryRepository.delete(category.get());
+        } else {
             throw new ValidException("Category Not Found");
         }
+
     }
 
     public void deleteSubCategory(Integer idSubCategory) {
         Optional<SubCategory> subCategory = subCategoryRepository.findById(idSubCategory);
-        try {
-            subCategory.ifPresent(subCategory1 -> {
-                subCategoryRepository.delete(subCategory1);
-            });
-        } catch (ValidException ex) {
+
+        if (subCategory.isPresent()){
+            subCategoryRepository.delete(subCategory.get());
+        } else {
             throw new ValidException("SubCategory Not Found");
         }
     }

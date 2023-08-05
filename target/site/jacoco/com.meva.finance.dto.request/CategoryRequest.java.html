@@ -14,16 +14,24 @@ public class CategoryRequest {
 <span class="fc" id="L14">    private String description;</span>
 <span class="nc" id="L15">    private List&lt;SubCategoryRequest&gt; subCategoryRequests;</span>
 
-    public Category convert(Category category) {
-<span class="fc" id="L18">        category.setId(this.id);</span>
-<span class="fc" id="L19">        category.setDescription(this.description);</span>
+<span class="fc" id="L17">    public CategoryRequest() {</span>
+<span class="fc" id="L18">    }</span>
 
-<span class="fc" id="L21">        return category;</span>
+<span class="nc" id="L20">    public CategoryRequest(Integer id, String description) {</span>
+<span class="nc" id="L21">        this.id = id;</span>
+<span class="nc" id="L22">        this.description = description;</span>
+<span class="nc" id="L23">    }</span>
+
+    public Category convert(Category category) {
+<span class="fc" id="L26">        category.setId(this.id);</span>
+<span class="fc" id="L27">        category.setDescription(this.description);</span>
+
+<span class="fc" id="L29">        return category;</span>
     }
 
     @Override
     public String toString() {
-<span class="fc" id="L26">        return &quot;CategoryRequest{&quot; +</span>
+<span class="fc" id="L34">        return &quot;CategoryRequest{&quot; +</span>
                 &quot;id=&quot; + id +
                 &quot;, description='&quot; + description + '\'' +
                 '}';

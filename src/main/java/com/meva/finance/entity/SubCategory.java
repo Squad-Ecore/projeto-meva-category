@@ -20,6 +20,14 @@ public class SubCategory {
     @JoinColumn(name = "id_category", nullable = false)
     private Category category;
 
+    public SubCategory() {
+    }
+
+    public SubCategory(Integer id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "SubCategory{" +

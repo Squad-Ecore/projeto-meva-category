@@ -14,6 +14,14 @@ public class CategoryRequest {
     private String description;
     private List<SubCategoryRequest> subCategoryRequests;
 
+    public CategoryRequest() {
+    }
+
+    public CategoryRequest(Integer id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     public Category convert(Category category) {
         category.setId(this.id);
         category.setDescription(this.description);

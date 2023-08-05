@@ -13,16 +13,24 @@ public class SubCategory {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = &quot;sub_category_id_sub_category_seq&quot;)
     @SequenceGenerator(name = &quot;sub_category_id_sub_category_seq&quot;, sequenceName = &quot;sub_category_id_sub_category_seq&quot;, allocationSize = 1)
     @Column(name = &quot;id_sub_category&quot;)
-<span class="nc" id="L16">    private Integer id;</span>
-<span class="nc" id="L17">    private String description;</span>
+<span class="fc" id="L16">    private Integer id;</span>
+<span class="fc" id="L17">    private String description;</span>
 
     @ManyToOne()
     @JoinColumn(name = &quot;id_category&quot;, nullable = false)
-<span class="nc" id="L21">    private Category category;</span>
+<span class="fc" id="L21">    private Category category;</span>
+
+<span class="fc" id="L23">    public SubCategory() {</span>
+<span class="fc" id="L24">    }</span>
+
+<span class="fc" id="L26">    public SubCategory(Integer id, String description) {</span>
+<span class="fc" id="L27">        this.id = id;</span>
+<span class="fc" id="L28">        this.description = description;</span>
+<span class="fc" id="L29">    }</span>
 
     @Override
     public String toString() {
-<span class="nc" id="L25">        return &quot;SubCategory{&quot; +</span>
+<span class="fc" id="L33">        return &quot;SubCategory{&quot; +</span>
                 &quot;id=&quot; + id +
                 &quot;, description='&quot; + description + '\'' +
                 '}';
