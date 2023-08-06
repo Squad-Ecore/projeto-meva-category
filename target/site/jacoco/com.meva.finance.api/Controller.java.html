@@ -25,17 +25,17 @@ import java.util.List;
 
     @PostMapping(&quot;/save/category&quot;)
     public ResponseEntity&lt;CategoryResponse&gt; save(@RequestBody CategoryRequest categoryRequest) {
-<span class="nc" id="L28">        Category category = categoryService.saveCategory(categoryRequest);</span>
-<span class="nc" id="L29">        CategoryResponse response = new CategoryResponse(category);</span>
+<span class="fc" id="L28">        Category category = categoryService.saveCategory(categoryRequest);</span>
+<span class="fc" id="L29">        CategoryResponse response = new CategoryResponse(category);</span>
 
-<span class="nc" id="L31">        return ResponseEntity.status(HttpStatus.CREATED).body(response);</span>
+<span class="fc" id="L31">        return ResponseEntity.status(HttpStatus.CREATED).body(response);</span>
     }
 
     @PostMapping(&quot;/save/{idCategory}/subCategory&quot;)
     public ResponseEntity&lt;SubCategory&gt; saveSubCategory(@PathVariable Integer idCategory, @RequestBody SubCategoryRequest subCategoryRequest) {
-<span class="nc" id="L36">        SubCategory subCategory = categoryService.saveSubCategory(idCategory, subCategoryRequest);</span>
+<span class="fc" id="L36">        SubCategory subCategory = categoryService.saveSubCategory(idCategory, subCategoryRequest);</span>
 
-<span class="nc" id="L38">        return ResponseEntity.status(HttpStatus.OK).build();</span>
+<span class="fc" id="L38">        return ResponseEntity.status(HttpStatus.OK).build();</span>
     }
 
     @GetMapping(&quot;/listCategory&quot;)

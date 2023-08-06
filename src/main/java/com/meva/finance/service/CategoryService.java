@@ -109,17 +109,18 @@ public class CategoryService {
     // desenvolver a category e subCategory onde salva normal juntamento com o método GET
     // O método GET vai pegar a descricao passada e vai buscar e entregar para mim no JSON
 
+    // método de validação de subcategory
 
-    public void validSubCategory(SubCategory subCategory) {
-        Integer idSubCategory = subCategory.getId();
-
-        if (subCategory.getDescription().isEmpty()) {
-            throw new ValidException("description subCategory is empty");
-        }
-
-        if (Objects.isNull(idSubCategory) || idSubCategory == 0) {
-            subCategoryRepository.save(subCategory);
-        }
-    }
+//    public void validSubCategory(SubCategory subCategory) {
+//        Integer idSubCategory = subCategory.getId();
+//
+//        if (subCategory.getDescription().isEmpty()) {
+//            throw new ValidException("description subCategory is empty");
+//        }
+//
+//        if (Objects.isNull(idSubCategory) || idSubCategory == 0) {
+//            subCategoryRepository.save(subCategory);
+//        }
+//    }
 
 }

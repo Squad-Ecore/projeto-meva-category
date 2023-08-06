@@ -69,40 +69,39 @@ public class CategoryService {
 <span class="fc" id="L69">    }</span>
 
     public Category updateCategory(CategoryRequest categoryRequest) {
-<span class="nc" id="L72">        Optional&lt;Category&gt; category = categoryRepository.findById(categoryRequest.getId());</span>
-<span class="nc bnc" id="L73" title="All 2 branches missed.">        if (category.isPresent()) {</span>
-<span class="nc" id="L74">            Category newCategory = categoryRequest.convert(new Category());</span>
+<span class="fc" id="L72">        Optional&lt;Category&gt; category = categoryRepository.findById(categoryRequest.getId());</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        if (category.isPresent()) {</span>
+<span class="fc" id="L74">            Category newCategory = categoryRequest.convert(new Category());</span>
 
-<span class="nc" id="L76">            return categoryRepository.save(newCategory);</span>
+<span class="fc" id="L76">            return categoryRepository.save(newCategory);</span>
         }
-<span class="nc" id="L78">        throw new ValidException(&quot;Category Not Found&quot;);</span>
+<span class="fc" id="L78">        throw new ValidException(&quot;Category Not Found&quot;);</span>
     }
 
     public SubCategory updateSubCategory(Integer idCategory, SubCategoryRequest subCategoryRequest) {
-<span class="nc" id="L82">        Optional&lt;Category&gt; categoryOpt = categoryRepository.findById(idCategory);</span>
+<span class="fc" id="L82">        Optional&lt;Category&gt; categoryOpt = categoryRepository.findById(idCategory);</span>
 
-<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (categoryOpt.isPresent()) {</span>
-<span class="nc" id="L85">            Optional&lt;SubCategory&gt; subCategory = subCategoryRepository.findById(subCategoryRequest.getId());</span>
-<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (subCategory.isPresent()) {</span>
-<span class="nc" id="L87">                SubCategory newSubCategory = subCategoryRequest.convert(new SubCategory());</span>
-<span class="nc" id="L88">                newSubCategory.setCategory(categoryOpt.get());</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (categoryOpt.isPresent()) {</span>
+<span class="fc" id="L85">            Optional&lt;SubCategory&gt; subCategory = subCategoryRepository.findById(subCategoryRequest.getId());</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">            if (subCategory.isPresent()) {</span>
+<span class="fc" id="L87">                SubCategory newSubCategory = subCategoryRequest.convert(new SubCategory());</span>
+<span class="fc" id="L88">                newSubCategory.setCategory(categoryOpt.get());</span>
 
-<span class="nc" id="L90">                return subCategoryRepository.save(newSubCategory);</span>
+<span class="fc" id="L90">                return subCategoryRepository.save(newSubCategory);</span>
             }
         }
-
-<span class="nc" id="L94">        throw new ValidException(&quot;SubCategory Not Found&quot;);</span>
+<span class="fc" id="L93">        throw new ValidException(&quot;SubCategory Not Found&quot;);</span>
     }
 
 
     public String findIdCategoryInSubCategory(String description) throws ValidException {
-<span class="nc" id="L99">        SubCategory subCategoryGetDescription = subCategoryRepository.findByDescription(description);</span>
+<span class="fc" id="L98">        SubCategory subCategoryGetDescription = subCategoryRepository.findByDescription(description);</span>
 
 
-<span class="nc bnc" id="L102" title="All 2 branches missed.">        if (subCategoryGetDescription != null) {</span>
-<span class="nc" id="L103">            return subCategoryGetDescription.getCategory().getDescription();</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        if (subCategoryGetDescription != null) {</span>
+<span class="fc" id="L102">            return subCategoryGetDescription.getCategory().getDescription();</span>
         } else {
-<span class="nc" id="L105">            throw new ValidException(&quot;NAO_CATEGORIZADO&quot;);</span>
+<span class="fc" id="L104">            throw new ValidException(&quot;NAO_CATEGORIZADO&quot;);</span>
         }
     }
 
@@ -110,18 +109,19 @@ public class CategoryService {
     // desenvolver a category e subCategory onde salva normal juntamento com o método GET
     // O método GET vai pegar a descricao passada e vai buscar e entregar para mim no JSON
 
+    // método de validação de subcategory
 
-    public void validSubCategory(SubCategory subCategory) {
-<span class="nc" id="L115">        Integer idSubCategory = subCategory.getId();</span>
-
-<span class="nc bnc" id="L117" title="All 2 branches missed.">        if (subCategory.getDescription().isEmpty()) {</span>
-<span class="nc" id="L118">            throw new ValidException(&quot;description subCategory is empty&quot;);</span>
-        }
-
-<span class="nc bnc" id="L121" title="All 4 branches missed.">        if (Objects.isNull(idSubCategory) || idSubCategory == 0) {</span>
-<span class="nc" id="L122">            subCategoryRepository.save(subCategory);</span>
-        }
-<span class="nc" id="L124">    }</span>
+//    public void validSubCategory(SubCategory subCategory) {
+//        Integer idSubCategory = subCategory.getId();
+//
+//        if (subCategory.getDescription().isEmpty()) {
+//            throw new ValidException(&quot;description subCategory is empty&quot;);
+//        }
+//
+//        if (Objects.isNull(idSubCategory) || idSubCategory == 0) {
+//            subCategoryRepository.save(subCategory);
+//        }
+//    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

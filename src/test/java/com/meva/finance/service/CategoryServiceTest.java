@@ -70,7 +70,7 @@ class CategoryServiceTest {
             categoryService.saveSubCategory(categoryRequest.getId(), subCategoryRequest);
         });
     }
-    
+
     @Test
     void testSaveSubCategory() {
         Mockito.when(categoryRepository.findById(categoryRequest.getId())).thenReturn(categoryOpt);
@@ -192,6 +192,7 @@ class CategoryServiceTest {
 
         Assertions.assertEquals(category.getDescription(), resultDescription);
     }
+
     @Test
     void testThrowExceptionFindSubCategoryDescription() {
         Category category = categoryRequest.convert(new Category());
@@ -203,7 +204,6 @@ class CategoryServiceTest {
         Assertions.assertThrows(ValidException.class, () -> {
             categoryService.findIdCategoryInSubCategory(subCategory.getDescription());
         });
-
     }
 
 

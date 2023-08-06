@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: com.meva.finance.ApplicationTest
+Test set: com.meva.finance.api.ControllerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.176 s - in com.meva.finance.ApplicationTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.186 s - in com.meva.finance.api.ControllerTest
