@@ -1,6 +1,7 @@
 package com.meva.finance.dto.request;
 
 import com.meva.finance.entity.Category;
+import com.meva.finance.entity.SubCategory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,17 +54,30 @@ class CategoryRequestTest {
     @Test
     void testSubCategoryList() {
         List<SubCategoryRequest> list1 = new ArrayList<>();
-        list1.add(new SubCategoryRequest(1,"Alimentos"));
-        list1.add(new SubCategoryRequest(2,"Jogos"));
+        list1.add(new SubCategoryRequest(1, "Alimentos"));
+        list1.add(new SubCategoryRequest(2, "Jogos"));
 
         List<SubCategoryRequest> list2 = new ArrayList<>();
-        list2.add(new SubCategoryRequest(3,"Lojas"));
-        list2.add(new SubCategoryRequest(4,"Moveis"));
+        list2.add(new SubCategoryRequest(3, "Lojas"));
+        list2.add(new SubCategoryRequest(4, "Moveis"));
 
         int hashCodeList1 = list1.hashCode();
         int hashCodeList2 = list2.hashCode();
 
         assertNotEquals(hashCodeList1, hashCodeList2);
+    }
+
+    @Test
+    void checkConstructor() {
+        Category category1 = new Category(1, "Alimentos");
+        SubCategory subCategory = new SubCategory(1, "BarGerson");
+        subCategory.setCategory(category);
+
+        category1 = categoryRequest.convert(new Category());
+
+        assertEquals(category1.getDescription(), categoryRequest.getDescription());
+        assertTrue(category1.equals(category1));
+
     }
 
 

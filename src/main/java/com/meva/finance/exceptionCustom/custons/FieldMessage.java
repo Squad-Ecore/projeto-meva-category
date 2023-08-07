@@ -14,4 +14,6 @@ public class FieldMessage implements Serializable {
         this.status = status;
         this.message = message;
     }
+
+
 }

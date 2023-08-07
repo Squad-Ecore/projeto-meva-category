@@ -1,6 +1,5 @@
 com/meva/finance/dto/request/SubCategoryRequest.class
 com/meva/finance/entity/SubCategory.class
-com/meva/finance/dto/response/SubCategoryResponse.class
 com/meva/finance/exceptionCustom/custons/ValidException.class
 com/meva/finance/api/Controller.class
 com/meva/finance/entity/Category.class

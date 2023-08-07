@@ -3,15 +3,26 @@
 import com.meva.finance.entity.Category;
 import lombok.Data;
 
-<span class="nc bnc" id="L6" title="All 22 branches missed.">@Data</span>
+<span class="pc bpc" id="L6" title="20 of 22 branches missed.">@Data</span>
 public class CategoryResponse {
 
-<span class="nc" id="L9">    private Integer id;</span>
-<span class="nc" id="L10">    private String description;</span>
+<span class="fc" id="L9">    private Integer id;</span>
+<span class="fc" id="L10">    private String description;</span>
 
-<span class="fc" id="L12">    public CategoryResponse(Category category) {</span>
-<span class="fc" id="L13">        this.id = category.getId();</span>
-<span class="fc" id="L14">        this.description = category.getDescription();</span>
-<span class="fc" id="L15">    }</span>
+<span class="fc" id="L12">    public CategoryResponse() {</span>
+<span class="fc" id="L13">    }</span>
+
+<span class="fc" id="L15">    public CategoryResponse(Category category) {</span>
+<span class="fc" id="L16">        this.id = category.getId();</span>
+<span class="fc" id="L17">        this.description = category.getDescription();</span>
+<span class="fc" id="L18">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L22">        return &quot;CategoryResponse{&quot; +</span>
+                &quot;id=&quot; + id +
+                &quot;, description='&quot; + description + '\'' +
+                '}';
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

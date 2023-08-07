@@ -1,7 +1,10 @@
 /home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/dto/request/SubCategoryRequestTest.java
 /home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/dto/request/CategoryRequestTest.java
 /home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/service/CategoryServiceTest.java
+/home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/exceptionCustom/custons/FieldMessageTest.java
 /home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/entity/CategoryTest.java
 /home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/entity/SubCategoryTest.java
 /home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/ApplicationTest.java
 /home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/api/ControllerTest.java
+/home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/dto/response/CategoryResponseTest.java
+/home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/exceptionCustom/restExceptionHandler/RestExceptionHandlerTest.java

@@ -8,6 +8,7 @@ import com.meva.finance.exceptionCustom.custons.ValidException;
 import com.meva.finance.repository.CategoryRepository;
 import com.meva.finance.repository.SubCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,22 +48,26 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public void deleteCategory(Integer idCategory) throws ValidException {
+    public ResponseEntity<String> deleteCategory(Integer idCategory) throws ValidException {
         Optional<Category> category = categoryRepository.findById(idCategory);
 
-        if (category.isPresent()){
+        if (category.isPresent()) {
             categoryRepository.delete(category.get());
+
+            return ResponseEntity.ok("Category Deletada");
         } else {
             throw new ValidException("Category Not Found");
         }
 
     }
 
-    public void deleteSubCategory(Integer idSubCategory) {
+    public ResponseEntity<String> deleteSubCategory(Integer idSubCategory) {
         Optional<SubCategory> subCategory = subCategoryRepository.findById(idSubCategory);
 
-        if (subCategory.isPresent()){
+        if (subCategory.isPresent()) {
             subCategoryRepository.delete(subCategory.get());
+
+            return ResponseEntity.ok("SubCategory Deletada");
         } else {
             throw new ValidException("SubCategory Not Found");
         }
@@ -96,7 +101,6 @@ public class CategoryService {
 
     public String findIdCategoryInSubCategory(String description) throws ValidException {
         SubCategory subCategoryGetDescription = subCategoryRepository.findByDescription(description);
-
 
         if (subCategoryGetDescription != null) {
             return subCategoryGetDescription.getCategory().getDescription();

@@ -9,6 +9,7 @@ import com.meva.finance.exceptionCustom.custons.ValidException;
 import com.meva.finance.repository.CategoryRepository;
 import com.meva.finance.repository.SubCategoryRepository;
 import com.meva.finance.service.CategoryService;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -105,22 +106,102 @@ class ControllerTest {
     }
 
 
-//    @Test
-//    void testSuccessDescriptionCategoryInSubCategory() {
-//        Category category = categoryRequest.convert(new Category());
-//        SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
-//        subCategory.setCategory(category);
-//
-//        Mockito.when(subCategoryRepository.findByDescription(subCategory.getDescription())).thenReturn(subCategoryOpt.get());
-//
-//        String description = categoryService.findIdCategoryInSubCategory(subCategory.getDescription());
-//
-//        ResponseEntity<String> result = controller.findByDescriptionSubCategory(description);
-//
-//        Assertions.assertNotNull(result);
-//
+    @Test
+    void testSuccessDescriptionCategoryInSubCategory() {
+        Category category = new Category(1, "Alimentos");
+        SubCategory subCategory = new SubCategory(1, "lanchoneteGerson");
+        subCategory.setCategory(category);
 
-//    }
+        Mockito.when(categoryService.findIdCategoryInSubCategory(subCategory.getDescription())).thenReturn(subCategory.getCategory().getDescription());
+
+        ResponseEntity<String> resultDescription = controller.findByDescriptionSubCategory(subCategory.getDescription());
+
+        Assertions.assertNotNull(resultDescription);
+        Assertions.assertEquals("Category: " + category.getDescription(), resultDescription.getBody());
+        Assertions.assertEquals(resultDescription.getStatusCode(), HttpStatus.OK);
+    }
+
+    @Test
+    void testCheckDescriptionSubCategoryThrownException() {
+        Category category = new Category(1, "Alimentos");
+        SubCategory subCategory = new SubCategory(1, "lanchoneteGerson");
+        subCategory.setCategory(category);
+
+        Mockito.when(categoryService.findIdCategoryInSubCategory(Mockito.anyString())).thenThrow(new ValidException("NAO_CATEGORIZADO"));
+
+        Assertions.assertThrows(ValidException.class, () -> {
+            controller.findByDescriptionSubCategory(Mockito.anyString());
+        });
+    }
+
+    @Test
+    void testSuccessDeleteCategory() {
+        Mockito.when(categoryService.deleteCategory(ID)).thenReturn(ResponseEntity.ok("Category Deletada"));
+
+        ResponseEntity<String> result = controller.deleteCategory(ID);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
+        Assertions.assertEquals(result.getBody(), "Category Deletada");
+    }
+
+    @Test
+    void testCheckThrowExceptionCategoryNotFound() {
+        Mockito.when(categoryService.deleteCategory(Mockito.anyInt())).thenThrow(new ValidException("NAO_CATEGORIZADO"));
+
+        Assertions.assertThrows(ValidException.class, () -> {
+            controller.deleteCategory(Mockito.anyInt());
+        });
+    }
+
+    @Test
+    void testSuccessDeleteSubCategory() {
+        Mockito.when(categoryService.deleteSubCategory(ID)).thenReturn(ResponseEntity.ok("SubCategory Deletada"));
+
+        ResponseEntity<String> result = controller.deleteSubCategory(ID);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(result.getStatusCode(), HttpStatus.OK);
+        Assertions.assertEquals(result.getBody(), "SubCategory Deletada");
+    }
+
+    @Test
+    void testUpdateCategorySuccess() {
+        Mockito.when(categoryService.updateCategory(categoryRequest)).thenReturn(categoryOpt.get());
+
+        ResponseEntity<CategoryResponse> response = controller.updateCategory(categoryRequest);
+
+        Assertions.assertNotNull(response);
+        Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+    }
+
+    @Test
+    void testChechCategoryThorwException() {
+        Mockito.when(categoryService.updateCategory(Mockito.any())).thenThrow(new ValidException("Category Not Found"));
+
+        Assertions.assertThrows(ValidException.class, () -> {
+            controller.updateCategory(categoryRequest);
+        });
+    }
+
+    @Test
+    void testSuccessUpdateSubCategory() {
+        Mockito.when(categoryService.updateSubCategory(ID, subCategoryRequest)).thenReturn(subCategoryOpt.get());
+
+        ResponseEntity<String> response = controller.updateSubCategory(ID, subCategoryRequest);
+
+        Assertions.assertNotNull(response);
+        Assertions.assertEquals(response.getBody(), "SubCategory update");
+    }
+
+    @Test
+    void testCheckUpdateSubCategoryThrowException(){
+        Mockito.when(categoryService.updateSubCategory(null, subCategoryRequest)).thenThrow(new ValidException("SubCategory Not Found"));
+
+        Assertions.assertThrows(ValidException.class, () ->{
+            controller.updateSubCategory(null, subCategoryRequest);
+        });
+    }
 
 
     private void startResources() {
