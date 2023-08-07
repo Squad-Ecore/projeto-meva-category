@@ -21,6 +21,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import javax.swing.text.html.Option;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -83,18 +86,41 @@ class ControllerTest {
 
         try {
             controller.saveSubCategory(0, subCategoryRequest);
-            Assertions.fail("teste ..");
+            Assertions.fail("teste fail");
         } catch (Exception ex) {
             Assertions.assertEquals(ex.getMessage(), "NAO_CATEGORIZADO");
         }
     }
 
     @Test
-    void testListCategory(){
+    void testListCategory() {
+        List<Category> categoryList = new ArrayList<>();
+        categoryList.add(new Category());
 
+        Mockito.when(categoryService.findAllCategory()).thenReturn(categoryList);
 
+        List<Category> response = controller.findAllCategory();
 
+        Assertions.assertEquals(categoryList, response);
     }
+
+
+//    @Test
+//    void testSuccessDescriptionCategoryInSubCategory() {
+//        Category category = categoryRequest.convert(new Category());
+//        SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
+//        subCategory.setCategory(category);
+//
+//        Mockito.when(subCategoryRepository.findByDescription(subCategory.getDescription())).thenReturn(subCategoryOpt.get());
+//
+//        String description = categoryService.findIdCategoryInSubCategory(subCategory.getDescription());
+//
+//        ResponseEntity<String> result = controller.findByDescriptionSubCategory(description);
+//
+//        Assertions.assertNotNull(result);
+//
+
+//    }
 
 
     private void startResources() {

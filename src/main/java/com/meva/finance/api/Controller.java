@@ -39,17 +39,16 @@ public class Controller {
     }
 
     @GetMapping("/listCategory")
-    public List<Category> findAllSubCategory() {
-
+    public List<Category> findAllCategory() {
         return categoryService.findAllCategory();
     }
 
 
     @GetMapping("/getCategoryByExtract/{description}")
     public ResponseEntity<String> findByDescriptionSubCategory(@PathVariable String description) {
-        String idCategory = categoryService.findIdCategoryInSubCategory(description);
+        String descriptionCategory = categoryService.findIdCategoryInSubCategory(description);
 
-        return ResponseEntity.ok("Category: " + idCategory);
+        return ResponseEntity.ok("Category: " + descriptionCategory);
     }
 
 

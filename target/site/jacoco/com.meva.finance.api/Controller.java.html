@@ -39,49 +39,48 @@ import java.util.List;
     }
 
     @GetMapping(&quot;/listCategory&quot;)
-    public List&lt;Category&gt; findAllSubCategory() {
-
-<span class="nc" id="L44">        return categoryService.findAllCategory();</span>
+    public List&lt;Category&gt; findAllCategory() {
+<span class="fc" id="L43">        return categoryService.findAllCategory();</span>
     }
 
 
     @GetMapping(&quot;/getCategoryByExtract/{description}&quot;)
     public ResponseEntity&lt;String&gt; findByDescriptionSubCategory(@PathVariable String description) {
-<span class="nc" id="L50">        String idCategory = categoryService.findIdCategoryInSubCategory(description);</span>
+<span class="fc" id="L49">        String descriptionCategory = categoryService.findIdCategoryInSubCategory(description);</span>
 
-<span class="nc" id="L52">        return ResponseEntity.ok(&quot;Category: &quot; + idCategory);</span>
+<span class="fc" id="L51">        return ResponseEntity.ok(&quot;Category: &quot; + descriptionCategory);</span>
     }
 
 
     @DeleteMapping(&quot;/delete/category/{idCategory}&quot;)
     public ResponseEntity&lt;String&gt; deleteCategory(@PathVariable Integer idCategory) {
-<span class="nc" id="L58">        categoryService.deleteCategory(idCategory);</span>
+<span class="nc" id="L57">        categoryService.deleteCategory(idCategory);</span>
 
-<span class="nc" id="L60">        return ResponseEntity.ok(&quot;Category Deletada&quot;);</span>
+<span class="nc" id="L59">        return ResponseEntity.ok(&quot;Category Deletada&quot;);</span>
     }
 
     @DeleteMapping(&quot;delete/subcategory/{idSubCategory}&quot;)
     public ResponseEntity&lt;String&gt; deleteSubCategory(@PathVariable Integer idSubCategory) {
-<span class="nc" id="L65">        categoryService.deleteSubCategory(idSubCategory);</span>
+<span class="nc" id="L64">        categoryService.deleteSubCategory(idSubCategory);</span>
 
-<span class="nc" id="L67">        return ResponseEntity.ok(&quot;SubCategory Deletada&quot;);</span>
+<span class="nc" id="L66">        return ResponseEntity.ok(&quot;SubCategory Deletada&quot;);</span>
     }
 
 
     @PutMapping(&quot;/update/category&quot;)
     public ResponseEntity&lt;CategoryResponse&gt; updateCategory(@RequestBody CategoryRequest categoryRequest) {
-<span class="nc" id="L73">        Category category = categoryService.updateCategory(categoryRequest);</span>
-<span class="nc" id="L74">        CategoryResponse response = new CategoryResponse(category);</span>
+<span class="nc" id="L72">        Category category = categoryService.updateCategory(categoryRequest);</span>
+<span class="nc" id="L73">        CategoryResponse response = new CategoryResponse(category);</span>
 
-<span class="nc" id="L76">        return ResponseEntity.ok(response);</span>
+<span class="nc" id="L75">        return ResponseEntity.ok(response);</span>
     }
 
 
     @PutMapping(&quot;/update/subcategory/category/{idCategory}&quot;)
     public ResponseEntity&lt;String&gt; updateSubCategory(@PathVariable Integer idCategory, @RequestBody SubCategoryRequest subCategoryRequest) {
-<span class="nc" id="L82">        categoryService.updateSubCategory(idCategory, subCategoryRequest);</span>
+<span class="nc" id="L81">        categoryService.updateSubCategory(idCategory, subCategoryRequest);</span>
 
-<span class="nc" id="L84">        return ResponseEntity.ok(&quot;SubCategory update&quot;);</span>
+<span class="nc" id="L83">        return ResponseEntity.ok(&quot;SubCategory update&quot;);</span>
     }
 
 }
