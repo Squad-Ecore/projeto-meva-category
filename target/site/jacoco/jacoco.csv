@@ -1,7 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 scaffold-java,com.meva.finance.exceptionCustom.custons,ValidException,0,4,0,0,0,2,0,1,0,1
 scaffold-java,com.meva.finance.exceptionCustom.custons,FieldMessage,15,100,9,7,0,7,8,9,0,9
-scaffold-java,com.meva.finance.dto.response,CategoryResponse,59,80,20,2,0,10,12,9,1,9
+scaffold-java,com.meva.finance.dto.response,CategoryResponse,18,121,12,10,0,10,10,11,0,10
 scaffold-java,com.meva.finance,Application,0,12,0,0,0,4,0,3,0,3
 scaffold-java,com.meva.finance.entity,SubCategory,123,52,30,0,0,11,18,9,3,9
 scaffold-java,com.meva.finance.entity,Category,25,160,17,13,0,12,14,13,0,12
