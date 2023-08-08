@@ -3,12 +3,12 @@ scaffold-java,com.meva.finance.exceptionCustom.custons,ValidException,0,4,0,0,0,
 scaffold-java,com.meva.finance.exceptionCustom.custons,FieldMessage,15,100,9,7,0,7,8,9,0,9
 scaffold-java,com.meva.finance.dto.response,CategoryResponse,18,121,12,10,0,10,10,11,0,10
 scaffold-java,com.meva.finance,Application,0,12,0,0,0,4,0,3,0,3
-scaffold-java,com.meva.finance.entity,SubCategory,123,52,30,0,0,11,18,9,3,9
-scaffold-java,com.meva.finance.entity,Category,25,160,17,13,0,12,14,13,0,12
+scaffold-java,com.meva.finance.entity,SubCategory,25,150,17,13,0,11,14,13,0,12
+scaffold-java,com.meva.finance.entity,Category,19,166,14,16,0,12,11,16,0,12
 scaffold-java,com.meva.finance.config,SwaggerConfig,0,14,0,0,0,6,0,2,0,2
 scaffold-java,com.meva.finance.resource,FormatStringDescription,0,38,0,4,0,7,0,4,0,2
 scaffold-java,com.meva.finance.service,CategoryService,0,180,1,13,0,40,1,15,0,9
 scaffold-java,com.meva.finance.api,Controller,0,89,0,0,0,19,0,10,0,10
-scaffold-java,com.meva.finance.dto.request,CategoryRequest,109,76,25,5,5,9,19,9,4,9
+scaffold-java,com.meva.finance.dto.request,CategoryRequest,29,156,16,14,0,14,14,14,1,12
 scaffold-java,com.meva.finance.dto.request,SubCategoryRequest,55,102,18,4,0,15,10,13,1,11
 scaffold-java,com.meva.finance.exceptionCustom.restExceptionHandler,RestExceptionHandler,0,16,0,0,0,3,0,2,0,2

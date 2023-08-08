@@ -80,6 +80,27 @@ class CategoryRequestTest {
 
     }
 
+    @Test
+    void testEqualsAndHashCode() {
+        CategoryRequest categoryRequest1 = new CategoryRequest(1, "Category A");
+        CategoryRequest categoryRequest2 = new CategoryRequest(1, "Category A");
+
+        assertEquals(categoryRequest1, categoryRequest2);
+        assertEquals(categoryRequest1.hashCode(), categoryRequest2.hashCode());
+    }
+
+    @Test
+    void testNotEquals(){
+        CategoryRequest categoryRequest3 = new CategoryRequest(1, "Category A");
+        CategoryRequest categoryRequest4 = new CategoryRequest(2, "Category A");
+        assertNotEquals(categoryRequest3, categoryRequest4);
+
+        CategoryRequest categoryRequest5 = new CategoryRequest(1, "Category A");
+        CategoryRequest categoryRequest6 = new CategoryRequest(1, "Category B");
+        assertNotEquals(categoryRequest5, categoryRequest6);
+
+    }
+
 
     private void startCategoryRequest() {
         categoryRequest = new CategoryRequest();

@@ -53,7 +53,6 @@ class CategoryResponseTest {
 
     @Test
     void testEquals() {
-        // Cenário 1: Teste de igualdade
         CategoryResponse response1 = new CategoryResponse();
         response1.setId(1);
         response1.setDescription("Category A");
@@ -63,7 +62,6 @@ class CategoryResponseTest {
         response2.setDescription("Category A");
         assertEquals(response1, response2);
 
-        // Cenário 2: Teste de diferença de id
         CategoryResponse response3 = new CategoryResponse();
         response3.setId(1);
         response3.setDescription("Category A");

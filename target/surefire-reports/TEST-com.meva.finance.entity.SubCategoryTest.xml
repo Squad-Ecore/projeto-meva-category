@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.meva.finance.ApplicationTest" time="12.147" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.meva.finance.entity.SubCategoryTest" time="0.001" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -53,5 +53,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testMain" classname="com.meva.finance.ApplicationTest" time="1.848"/>
+  <testcase name="testCanEquals" classname="com.meva.finance.entity.SubCategoryTest" time="0"/>
+  <testcase name="testHashCode" classname="com.meva.finance.entity.SubCategoryTest" time="0"/>
+  <testcase name="testEquals" classname="com.meva.finance.entity.SubCategoryTest" time="0"/>
 </testsuite>

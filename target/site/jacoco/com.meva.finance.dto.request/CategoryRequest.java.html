@@ -7,20 +7,20 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-<span class="pc bpc" id="L10" title="25 of 30 branches missed.">@Data</span>
+<span class="pc bpc" id="L10" title="16 of 30 branches missed.">@Data</span>
 public class CategoryRequest {
 
 <span class="fc" id="L13">    private Integer id;</span>
 <span class="fc" id="L14">    private String description;</span>
-<span class="nc" id="L15">    private List&lt;SubCategoryRequest&gt; subCategoryRequests;</span>
+<span class="fc" id="L15">    private List&lt;SubCategoryRequest&gt; subCategoryRequests;</span>
 
 <span class="fc" id="L17">    public CategoryRequest() {</span>
 <span class="fc" id="L18">    }</span>
 
-<span class="nc" id="L20">    public CategoryRequest(Integer id, String description) {</span>
-<span class="nc" id="L21">        this.id = id;</span>
-<span class="nc" id="L22">        this.description = description;</span>
-<span class="nc" id="L23">    }</span>
+<span class="fc" id="L20">    public CategoryRequest(Integer id, String description) {</span>
+<span class="fc" id="L21">        this.id = id;</span>
+<span class="fc" id="L22">        this.description = description;</span>
+<span class="fc" id="L23">    }</span>
 
     public Category convert(Category category) {
 <span class="fc" id="L26">        category.setId(this.id);</span>
