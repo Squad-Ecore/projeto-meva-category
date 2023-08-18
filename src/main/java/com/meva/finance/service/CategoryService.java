@@ -38,6 +38,7 @@ public class CategoryService {
         if (optCategory.isPresent()) {
             SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
             subCategory.setCategory(optCategory.get());
+            validDescriptionSubCategory(subCategory);
 
             return subCategoryRepository.save(subCategory);
         }
@@ -115,16 +116,11 @@ public class CategoryService {
 
     // método de validação de subcategory
 
-//    public void validSubCategory(SubCategory subCategory) {
-//        Integer idSubCategory = subCategory.getId();
-//
-//        if (subCategory.getDescription().isEmpty()) {
-//            throw new ValidException("description subCategory is empty");
-//        }
-//
-//        if (Objects.isNull(idSubCategory) || idSubCategory == 0) {
-//            subCategoryRepository.save(subCategory);
-//        }
-//    }
+    private void validDescriptionSubCategory(SubCategory subCategory) {
+
+        if (subCategory.getDescription().isEmpty()) {
+            throw new ValidException("description subCategory is empty");
+        }
+    }
 
 }
