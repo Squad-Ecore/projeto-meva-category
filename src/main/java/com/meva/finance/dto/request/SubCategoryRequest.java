@@ -3,15 +3,21 @@ package com.meva.finance.dto.request;
 import com.meva.finance.entity.SubCategory;
 import com.meva.finance.resource.FormatStringDescription;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Data
 @Component
+@Getter
+@Setter
 public class SubCategoryRequest {
 
     private Integer id;
     private String description;
+    private Integer categoryRequestId;
+
 
     public SubCategoryRequest() {
     }

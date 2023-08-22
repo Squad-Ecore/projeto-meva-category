@@ -31,22 +31,24 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @PostMapping("/save/{idCategory}/subCategory")
-    public ResponseEntity<SubCategory> saveSubCategory(@PathVariable Integer idCategory, @RequestBody SubCategoryRequest subCategoryRequest) {
-        SubCategory subCategory = categoryService.saveSubCategory(idCategory, subCategoryRequest);
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+    @PostMapping("/save/subCategory")
+    public ResponseEntity<SubCategory> saveSubCategory(@RequestBody SubCategoryRequest subCategoryRequest) {
+        SubCategory subCategory = categoryService.saveSubCategory(subCategoryRequest);
+
+        return ResponseEntity.ok().build();
     }
 
+
     @GetMapping("/listCategory")
-    public List<Category> findAllCategory() {
-        return categoryService.findAllCategory();
+    public List<Category> buscaTodasCategory() {
+        return categoryService.buscaTodasCategory();
     }
 
 
     @GetMapping("/getCategoryByExtract/{description}")
-    public ResponseEntity<String> findByDescriptionSubCategory(@PathVariable String description) {
-        String descriptionCategory = categoryService.findIdCategoryInSubCategory(description);
+    public ResponseEntity<String> buscaDescriptionSubCategory(@PathVariable String description) {
+        String descriptionCategory = categoryService.buscaIdCategoryNaDescriptionSubCategory(description);
 
         return ResponseEntity.ok("Category: " + descriptionCategory);
     }

@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -33,19 +32,36 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public SubCategory saveSubCategory(Integer idCategory, SubCategoryRequest subCategoryRequest) throws ValidException {
-        Optional<Category> optCategory = categoryRepository.findById(idCategory);
-        if (optCategory.isPresent()) {
-            SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
-            subCategory.setCategory(optCategory.get());
-            validDescriptionSubCategory(subCategory);
+//    public SubCategory saveSubCategory(Integer idCategory, SubCategoryRequest subCategoryRequest) throws ValidException {
+//        Optional<Category> optCategory = categoryRepository.findById(idCategory);
+//        if (optCategory.isPresent()) {
+//            SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
+//            subCategory.setCategory(optCategory.get());
+//            validDescriptionSubCategory(subCategory);
+//
+//            return subCategoryRepository.save(subCategory);
+//        }
+//        throw new ValidException("NAO_CATEGORIZADO");
+//    }
 
-            return subCategoryRepository.save(subCategory);
+    public SubCategory saveSubCategory(SubCategoryRequest subCategoryRequest) throws ValidException {
+        Integer idCategory = subCategoryRequest.getCategoryRequestId();
+
+        Optional<Category> categoryOpt = categoryRepository.findById(idCategory);
+
+        if (!categoryOpt.isPresent()) {
+            throw new ValidException("Category not found");
         }
-        throw new ValidException("NAO_CATEGORIZADO");
+
+        SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
+        subCategory.setCategory(categoryOpt.get());
+        validDescriptionSubCategory(subCategory);
+        subCategoryRepository.save(subCategory);
+
+        return subCategory;
     }
 
-    public List<Category> findAllCategory() {
+    public List<Category> buscaTodasCategory() {
         return categoryRepository.findAll();
     }
 
@@ -100,7 +116,7 @@ public class CategoryService {
     }
 
 
-    public String findIdCategoryInSubCategory(String description) throws ValidException {
+    public String buscaIdCategoryNaDescriptionSubCategory(String description) throws ValidException {
         SubCategory subCategoryGetDescription = subCategoryRepository.findByDescription(description);
 
         if (subCategoryGetDescription != null) {
@@ -110,11 +126,6 @@ public class CategoryService {
         }
     }
 
-
-    // desenvolver a category e subCategory onde salva normal juntamento com o método GET
-    // O método GET vai pegar a descricao passada e vai buscar e entregar para mim no JSON
-
-    // método de validação de subcategory
 
     private void validDescriptionSubCategory(SubCategory subCategory) {
 

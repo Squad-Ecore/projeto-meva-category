@@ -3,11 +3,15 @@ package com.meva.finance.dto.request;
 import com.meva.finance.entity.Category;
 import com.meva.finance.entity.SubCategory;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Getter
+@Setter
 public class CategoryRequest {
 
     private Integer id;
