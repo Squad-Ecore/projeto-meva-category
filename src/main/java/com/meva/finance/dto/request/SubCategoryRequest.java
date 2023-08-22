@@ -19,6 +19,7 @@ public class SubCategoryRequest {
     private Integer categoryRequestId;
 
 
+
     public SubCategoryRequest() {
     }
 
@@ -28,18 +29,15 @@ public class SubCategoryRequest {
     }
 
     public SubCategory convert(SubCategory subCategory) {
+        FormatStringDescription format = new FormatStringDescription();
 
         subCategory.setId(this.id);
 
-        subCategory.setDescription(formatDescription(this.description));
+        subCategory.setDescription(format.removeStringPequenas(this.getDescription()));
 
         subCategory.setCategory(subCategory.getCategory());
 
         return subCategory;
-    }
-
-    public String formatDescription(String description) {
-        return FormatStringDescription.removeStringPequenas(this.description);
     }
 
 
