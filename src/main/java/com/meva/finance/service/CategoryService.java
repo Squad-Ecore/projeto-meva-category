@@ -119,6 +119,7 @@ public class CategoryService {
     public String buscaIdCategoryNaDescriptionSubCategory(String description) throws ValidException {
         SubCategory subCategoryGetDescription = subCategoryRepository.findByDescription(description);
 
+        //retorna um integer
         if (subCategoryGetDescription != null) {
             return subCategoryGetDescription.getCategory().getDescription();
         } else {

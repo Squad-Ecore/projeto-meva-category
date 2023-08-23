@@ -31,7 +31,6 @@ public class Controller {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-
     @PostMapping("/save/subCategory")
     public ResponseEntity<SubCategory> saveSubCategory(@RequestBody SubCategoryRequest subCategoryRequest) {
         SubCategory subCategory = categoryService.saveSubCategory(subCategoryRequest);
