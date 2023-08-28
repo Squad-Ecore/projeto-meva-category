@@ -1,40 +1,39 @@
 package com.meva.finance.resource;
 
-import com.meva.finance.repository.CategoryRepository;
-import com.meva.finance.repository.SubCategoryRepository;
+import com.meva.finance.entity.Category;
 import com.meva.finance.service.CategoryService;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@Getter
+@Setter
 public class FormatStringDescription {
 
     @Autowired
-    private SubCategoryRepository subCategoryRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
-    @Autowired
-    private CategoryService service;
+    private CategoryService categoryService;
 
 
     public String removeStringPequenas(String string) {
-        StringBuilder newString = new StringBuilder();
+
 
         String[] palavras = string.split("\\s+");
 
         for (String palavra : palavras) {
             if (palavra.length() >= 3) {
 
-                newString.append(palavra);
+
+                Category category = categoryService.buscaCategoryAtravesSubCategory(palavra);
+                if (category != null) {
+                    return category.getDescription();
+                }
+
             }
         }
-        return newString.toString();
+        return new Category(1, "Nao_Categorizado").getDescription();
     }
 
-
-
-//    public Integer buscaDescriptionBanco(String description) {
-//
-//    }
 
 }

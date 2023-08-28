@@ -13,6 +13,6 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     @EntityGraph(attributePaths = "subCategories")
     List<Category> findAll();
 
-    Category findByDescription(String description);
+//    Category findByDescription(String description);
 
 }

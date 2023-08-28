@@ -45,12 +45,12 @@ public class Controller {
     }
 
 
-    @GetMapping("/getCategoryByExtract/{description}")
-    public ResponseEntity<String> buscaDescriptionSubCategory(@PathVariable String description) {
-        String descriptionCategory = categoryService.buscaIdCategoryNaDescriptionSubCategory(description);
-
-        return ResponseEntity.ok("Category: " + descriptionCategory);
-    }
+//    @GetMapping("/getCategoryByExtract/{description}")
+//    public ResponseEntity<String> buscaDescriptionSubCategory(@PathVariable String description) {
+//        String descriptionCategory = categoryService.buscaIdCategoryNaDescriptionSubCategory(description);
+//
+//        return ResponseEntity.ok("Category: " + descriptionCategory);
+//    }
 
 
     @DeleteMapping("/delete/category/{idCategory}")

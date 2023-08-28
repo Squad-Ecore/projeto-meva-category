@@ -32,17 +32,6 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-//    public SubCategory saveSubCategory(Integer idCategory, SubCategoryRequest subCategoryRequest) throws ValidException {
-//        Optional<Category> optCategory = categoryRepository.findById(idCategory);
-//        if (optCategory.isPresent()) {
-//            SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
-//            subCategory.setCategory(optCategory.get());
-//            validDescriptionSubCategory(subCategory);
-//
-//            return subCategoryRepository.save(subCategory);
-//        }
-//        throw new ValidException("NAO_CATEGORIZADO");
-//    }
 
     public SubCategory saveSubCategory(SubCategoryRequest subCategoryRequest) throws ValidException {
         Integer idCategory = subCategoryRequest.getCategoryRequestId();
@@ -116,14 +105,14 @@ public class CategoryService {
     }
 
 
-    public String buscaIdCategoryNaDescriptionSubCategory(String description) throws ValidException {
-        SubCategory subCategoryGetDescription = subCategoryRepository.findByDescription(description);
+    public Category buscaCategoryAtravesSubCategory(String description) {
+        Optional<SubCategory> subCategory = subCategoryRepository.findByDescription(description);
 
-        //retorna um integer
-        if (subCategoryGetDescription != null) {
-            return subCategoryGetDescription.getCategory().getDescription();
+        if (subCategory != null) {
+            return subCategory.get().getCategory();
+
         } else {
-            throw new ValidException("NAO_CATEGORIZADO");
+            return new Category(1, "Nao_Category");
         }
     }
 

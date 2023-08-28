@@ -201,7 +201,7 @@ class CategoryServiceTest {
         subCategory.setDescription(null);
 
         Assertions.assertThrows(ValidException.class, () -> {
-            categoryService.buscaIdCategoryNaDescriptionSubCategory(subCategory.getDescription());
+            categoryService.buscaCategoryAtravesSubCategory(subCategory.getDescription());
         });
     }
 

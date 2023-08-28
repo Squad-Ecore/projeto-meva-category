@@ -119,18 +119,18 @@ class ControllerTest {
 //        Assertions.assertEquals(resultDescription.getStatusCode(), HttpStatus.OK);
 //    }
 
-    @Test
-    void testCheckDescriptionSubCategoryThrownException() {
-        Category category = new Category(1, "Alimentos");
-        SubCategory subCategory = new SubCategory(1, "lanchoneteGerson");
-        subCategory.setCategory(category);
-
-        Mockito.when(categoryService.buscaIdCategoryNaDescriptionSubCategory(Mockito.anyString())).thenThrow(new ValidException("NAO_CATEGORIZADO"));
-
-        Assertions.assertThrows(ValidException.class, () -> {
-            controller.buscaDescriptionSubCategory(Mockito.anyString());
-        });
-    }
+//    @Test
+//    void testCheckDescriptionSubCategoryThrownException() {
+//        Category category = new Category(1, "Alimentos");
+//        SubCategory subCategory = new SubCategory(1, "lanchoneteGerson");
+//        subCategory.setCategory(category);
+//
+//        Mockito.when(categoryService.buscaIdCategoryNaDescriptionSubCategory(Mockito.anyString())).thenThrow(new ValidException("NAO_CATEGORIZADO"));
+//
+//        Assertions.assertThrows(ValidException.class, () -> {
+//            controller.buscaDescriptionSubCategory(Mockito.anyString());
+//        });
+//    }
 
     @Test
     void testSuccessDeleteCategory() {
