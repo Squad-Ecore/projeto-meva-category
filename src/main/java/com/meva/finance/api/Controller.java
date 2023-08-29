@@ -1,8 +1,8 @@
 
 package com.meva.finance.api;
 
-import com.meva.finance.dto.request.CategoryRequest;
-import com.meva.finance.dto.request.SubCategoryRequest;
+import com.meva.finance.dto.request.CategoryDto;
+import com.meva.finance.dto.request.SubCategoryDto;
 import com.meva.finance.dto.response.CategoryResponse;
 import com.meva.finance.entity.Category;
 import com.meva.finance.entity.SubCategory;
@@ -24,7 +24,7 @@ public class Controller {
     private CategoryService categoryService;
 
     @PostMapping("/save/category")
-    public ResponseEntity<CategoryResponse> save(@RequestBody CategoryRequest categoryRequest) {
+    public ResponseEntity<CategoryResponse> save(@RequestBody CategoryDto categoryRequest) {
         Category category = categoryService.saveCategory(categoryRequest);
         CategoryResponse response = new CategoryResponse(category);
 
@@ -32,7 +32,7 @@ public class Controller {
     }
 
     @PostMapping("/save/subCategory")
-    public ResponseEntity<SubCategory> saveSubCategory(@RequestBody SubCategoryRequest subCategoryRequest) {
+    public ResponseEntity<SubCategory> saveSubCategory(@RequestBody SubCategoryDto subCategoryRequest) {
         SubCategory subCategory = categoryService.saveSubCategory(subCategoryRequest);
 
         return ResponseEntity.ok().build();
@@ -45,43 +45,13 @@ public class Controller {
     }
 
 
-//    @GetMapping("/getCategoryByExtract/{description}")
-//    public ResponseEntity<String> buscaDescriptionSubCategory(@PathVariable String description) {
-//        String descriptionCategory = categoryService.buscaIdCategoryNaDescriptionSubCategory(description);
-//
-//        return ResponseEntity.ok("Category: " + descriptionCategory);
-//    }
+    @GetMapping("/getCategoryByExtract/{description}")
+    public ResponseEntity<?> buscaDescriptionSubCategory(@PathVariable String description) {
 
+        Integer idCategory = categoryService.buscaCategoryIdNaDescription(description);
 
-    @DeleteMapping("/delete/category/{idCategory}")
-    public ResponseEntity<String> deleteCategory(@PathVariable Integer idCategory) {
-        categoryService.deleteCategory(idCategory);
-
-        return ResponseEntity.ok("Category Deletada");
+        return ResponseEntity.ok(idCategory);
     }
 
-    @DeleteMapping("delete/subcategory/{idSubCategory}")
-    public ResponseEntity<String> deleteSubCategory(@PathVariable Integer idSubCategory) {
-        categoryService.deleteSubCategory(idSubCategory);
-
-        return ResponseEntity.ok("SubCategory Deletada");
-    }
-
-
-    @PutMapping("/update/category")
-    public ResponseEntity<CategoryResponse> updateCategory(@RequestBody CategoryRequest categoryRequest) {
-        Category category = categoryService.updateCategory(categoryRequest);
-        CategoryResponse response = new CategoryResponse(category);
-
-        return ResponseEntity.ok(response);
-    }
-
-
-    @PutMapping("/update/subcategory/category/{idCategory}")
-    public ResponseEntity<String> updateSubCategory(@PathVariable Integer idCategory, @RequestBody SubCategoryRequest subCategoryRequest) {
-        categoryService.updateSubCategory(idCategory, subCategoryRequest);
-
-        return ResponseEntity.ok("SubCategory update");
-    }
 
 }

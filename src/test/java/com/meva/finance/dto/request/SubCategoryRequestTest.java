@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SubCategoryRequestTest {
 
     private SubCategory subCategory;
-    private SubCategoryRequest subCategoryRequest;
+    private SubCategoryDto subCategoryRequest;
 
 
     @BeforeEach
@@ -47,11 +47,11 @@ class SubCategoryRequestTest {
 
     @Test
     void checkHashCode() {
-        SubCategoryRequest subCategoryRequest1 = new SubCategoryRequest();
+        SubCategoryDto subCategoryRequest1 = new SubCategoryDto();
         subCategoryRequest1.setId(1);
         subCategoryRequest1.setDescription("Jogos");
 
-        SubCategoryRequest subCategoryRequest2 = new SubCategoryRequest();
+        SubCategoryDto subCategoryRequest2 = new SubCategoryDto();
         subCategoryRequest2.setId(2);
         subCategoryRequest2.setDescription("Alimentos");
 
@@ -65,7 +65,7 @@ class SubCategoryRequestTest {
 
 
     private void startSubCategory() {
-        subCategoryRequest = new SubCategoryRequest(1, "Alimentos");
+        subCategoryRequest = new SubCategoryDto(1, "Alimentos");
     }
 
 

@@ -1,35 +1,24 @@
 package com.meva.finance.dto.request;
 
 import com.meva.finance.entity.SubCategory;
-import com.meva.finance.resource.FormatStringDescription;
+import com.meva.finance.repository.SubCategoryRepository;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Component
-public class SubCategoryRequest {
+public class SubCategoryDto {
 
     private Integer id;
     private String description;
     private Integer categoryRequestId;
 
-
-    public SubCategoryRequest() {
-    }
-
-    public SubCategoryRequest(Integer id, String description) {
-        this.id = id;
-        this.description = description;
-    }
-
     public SubCategory convert(SubCategory subCategory) {
-        FormatStringDescription format = new FormatStringDescription();
-
-
         subCategory.setId(this.id);
-
-        format.removeStringPequenas(this.description);
-
 
         subCategory.setDescription(this.getDescription());
 

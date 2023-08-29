@@ -1,27 +1,25 @@
 package com.meva.finance.dto.request;
 
 import com.meva.finance.entity.Category;
-import com.meva.finance.entity.SubCategory;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Getter
 @Setter
-public class CategoryRequest {
+public class CategoryDto {
 
     private Integer id;
     private String description;
-    private List<SubCategoryRequest> subCategoryRequests;
+    private List<SubCategoryDto> subCategoryRequests;
 
-    public CategoryRequest() {
+    public CategoryDto() {
     }
 
-    public CategoryRequest(Integer id, String description) {
+    public CategoryDto(Integer id, String description) {
         this.id = id;
         this.description = description;
     }

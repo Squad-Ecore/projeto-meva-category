@@ -1,7 +1,7 @@
 package com.meva.finance.service;
 
-import com.meva.finance.dto.request.CategoryRequest;
-import com.meva.finance.dto.request.SubCategoryRequest;
+import com.meva.finance.dto.request.CategoryDto;
+import com.meva.finance.dto.request.SubCategoryDto;
 import com.meva.finance.entity.Category;
 import com.meva.finance.entity.SubCategory;
 import com.meva.finance.exceptionCustom.custons.ValidException;
@@ -34,8 +34,8 @@ class CategoryServiceTest {
     private SubCategoryRepository subCategoryRepository;
 
 
-    private CategoryRequest categoryRequest;
-    private SubCategoryRequest subCategoryRequest;
+    private CategoryDto categoryRequest;
+    private SubCategoryDto subCategoryRequest;
     private Optional<Category> categoryOpt;
     private Optional<SubCategory> subCategoryOpt;
 
@@ -207,12 +207,12 @@ class CategoryServiceTest {
 
 
     private void startResources() {
-        categoryRequest = new CategoryRequest();
+        categoryRequest = new CategoryDto();
         categoryRequest.setId(ID);
         categoryRequest.setDescription(DESCRIPTION_CATEGORY);
 
 
-        subCategoryRequest = new SubCategoryRequest();
+        subCategoryRequest = new SubCategoryDto();
         subCategoryRequest.setId(ID);
         subCategoryRequest.setDescription(BAR_DO_GLEISON);
 

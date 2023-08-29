@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CategoryRequestTest {
 
-    private CategoryRequest categoryRequest;
+    private CategoryDto categoryRequest;
     private Category category;
 
     @BeforeEach
@@ -43,7 +43,7 @@ class CategoryRequestTest {
 
     @Test
     void testComparacao() {
-        CategoryRequest categoryRequest1 = new CategoryRequest();
+        CategoryDto categoryRequest1 = new CategoryDto();
         categoryRequest1.setId(2);
         categoryRequest1.setDescription("Jogos");
 
@@ -53,13 +53,13 @@ class CategoryRequestTest {
 
     @Test
     void testSubCategoryList() {
-        List<SubCategoryRequest> list1 = new ArrayList<>();
-        list1.add(new SubCategoryRequest(1, "Alimentos"));
-        list1.add(new SubCategoryRequest(2, "Jogos"));
+        List<SubCategoryDto> list1 = new ArrayList<>();
+        list1.add(new SubCategoryDto(1, "Alimentos"));
+        list1.add(new SubCategoryDto(2, "Jogos"));
 
-        List<SubCategoryRequest> list2 = new ArrayList<>();
-        list2.add(new SubCategoryRequest(3, "Lojas"));
-        list2.add(new SubCategoryRequest(4, "Moveis"));
+        List<SubCategoryDto> list2 = new ArrayList<>();
+        list2.add(new SubCategoryDto(3, "Lojas"));
+        list2.add(new SubCategoryDto(4, "Moveis"));
 
         int hashCodeList1 = list1.hashCode();
         int hashCodeList2 = list2.hashCode();
@@ -82,8 +82,8 @@ class CategoryRequestTest {
 
     @Test
     void testEqualsAndHashCode() {
-        CategoryRequest categoryRequest1 = new CategoryRequest(1, "Category A");
-        CategoryRequest categoryRequest2 = new CategoryRequest(1, "Category A");
+        CategoryDto categoryRequest1 = new CategoryDto(1, "Category A");
+        CategoryDto categoryRequest2 = new CategoryDto(1, "Category A");
 
         assertEquals(categoryRequest1, categoryRequest2);
         assertEquals(categoryRequest1.hashCode(), categoryRequest2.hashCode());
@@ -91,19 +91,19 @@ class CategoryRequestTest {
 
     @Test
     void testNotEquals(){
-        CategoryRequest categoryRequest3 = new CategoryRequest(1, "Category A");
-        CategoryRequest categoryRequest4 = new CategoryRequest(2, "Category A");
+        CategoryDto categoryRequest3 = new CategoryDto(1, "Category A");
+        CategoryDto categoryRequest4 = new CategoryDto(2, "Category A");
         assertNotEquals(categoryRequest3, categoryRequest4);
 
-        CategoryRequest categoryRequest5 = new CategoryRequest(1, "Category A");
-        CategoryRequest categoryRequest6 = new CategoryRequest(1, "Category B");
+        CategoryDto categoryRequest5 = new CategoryDto(1, "Category A");
+        CategoryDto categoryRequest6 = new CategoryDto(1, "Category B");
         assertNotEquals(categoryRequest5, categoryRequest6);
 
     }
 
 
     private void startCategoryRequest() {
-        categoryRequest = new CategoryRequest();
+        categoryRequest = new CategoryDto();
         categoryRequest.setId(1);
         categoryRequest.setDescription("Alimentos");
     }
