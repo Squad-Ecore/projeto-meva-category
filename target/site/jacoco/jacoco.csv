@@ -1,0 +1,13 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+scaffold-java,com.meva.finance.exceptionCustom.custons,ValidException,0,4,0,0,0,2,0,1,0,1
+scaffold-java,com.meva.finance.exceptionCustom.custons,FieldMessage,15,100,9,7,0,7,8,9,0,9
+scaffold-java,com.meva.finance.dto.response,CategoryResponse,18,121,12,10,0,10,10,11,0,10
+scaffold-java,com.meva.finance,Application,0,12,0,0,0,4,0,3,0,3
+scaffold-java,com.meva.finance.entity,SubCategory,25,150,17,13,0,11,14,13,0,12
+scaffold-java,com.meva.finance.entity,Category,19,166,14,16,0,12,11,16,0,12
+scaffold-java,com.meva.finance.config,SwaggerConfig,0,14,0,0,0,6,0,2,0,2
+scaffold-java,com.meva.finance.service,CategoryService,9,115,3,9,2,25,4,8,1,5
+scaffold-java,com.meva.finance.api,Controller,0,42,0,0,0,10,0,6,0,6
+scaffold-java,com.meva.finance.exceptionCustom.restExceptionHandler,RestExceptionHandler,0,16,0,0,0,3,0,2,0,2
+scaffold-java,com.meva.finance.dto.request,SubCategoryDto,74,114,25,5,0,10,14,14,1,12
+scaffold-java,com.meva.finance.dto.request,CategoryDto,164,21,30,0,9,6,24,4,9,4

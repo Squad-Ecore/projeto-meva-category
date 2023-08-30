@@ -27,7 +27,7 @@ class SubCategoryRequestTest {
     }
 
     @Test
-    void testToStringSubCategoryRequest(){
+    void testToStringSubCategoryRequest() {
         String toStringEsperada = "SubCategoryRequest{id=1, description='Alimentos'}";
 
         assertEquals(subCategoryRequest.toString(), toStringEsperada);
@@ -65,7 +65,7 @@ class SubCategoryRequestTest {
 
 
     private void startSubCategory() {
-        subCategoryRequest = new SubCategoryDto(1, "Alimentos");
+        subCategoryRequest = new SubCategoryDto(1, "Alimentos", 2);
     }
 
 

@@ -75,7 +75,6 @@ public class CategoryService {
                 if (subOpt.isPresent()) {
                     return subOpt.get().getCategory().getId();
                 }
-
             }
         }
         return new Category(1, "Nao_Categorizado").getId();

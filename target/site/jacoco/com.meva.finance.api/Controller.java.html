@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Controller.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scaffold-java</a> &gt; <a href="index.source.html" class="el_package">com.meva.finance.api</a> &gt; <span class="el_source">Controller.java</span></div><h1>Controller.java</h1><pre class="source lang-java linenums">
+package com.meva.finance.api;
+
+import com.meva.finance.dto.request.CategoryDto;
+import com.meva.finance.dto.request.SubCategoryDto;
+import com.meva.finance.dto.response.CategoryResponse;
+import com.meva.finance.entity.Category;
+import com.meva.finance.entity.SubCategory;
+import com.meva.finance.service.CategoryService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+<span class="fc" id="L18">@Slf4j</span>
+@RestController
+@RequestMapping(&quot;/users&quot;)
+<span class="fc" id="L21">public class Controller {</span>
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @PostMapping(&quot;/save/category&quot;)
+    public ResponseEntity&lt;CategoryResponse&gt; save(@RequestBody CategoryDto categoryRequest) {
+<span class="fc" id="L28">        Category category = categoryService.saveCategory(categoryRequest);</span>
+<span class="fc" id="L29">        CategoryResponse response = new CategoryResponse(category);</span>
+
+<span class="fc" id="L31">        return ResponseEntity.status(HttpStatus.CREATED).body(response);</span>
+    }
+
+    @PostMapping(&quot;/save/subCategory&quot;)
+    public ResponseEntity&lt;SubCategory&gt; saveSubCategory(@RequestBody SubCategoryDto subCategoryRequest) {
+<span class="fc" id="L36">        SubCategory subCategory = categoryService.saveSubCategory(subCategoryRequest);</span>
+
+<span class="fc" id="L38">        return ResponseEntity.ok().build();</span>
+    }
+
+
+    @GetMapping(&quot;/listCategory&quot;)
+    public List&lt;Category&gt; buscaTodasCategory() {
+<span class="fc" id="L44">        return categoryService.buscaTodasCategory();</span>
+    }
+
+
+    @GetMapping(&quot;/getCategoryByExtract/{description}&quot;)
+    public ResponseEntity&lt;?&gt; buscaDescriptionSubCategory(@PathVariable String description) {
+
+<span class="fc" id="L51">        Integer idCategory = categoryService.buscaCategoryIdNaDescription(description);</span>
+
+<span class="fc" id="L53">        return ResponseEntity.ok(idCategory);</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

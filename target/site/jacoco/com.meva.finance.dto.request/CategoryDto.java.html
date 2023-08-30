@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CategoryDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scaffold-java</a> &gt; <a href="index.source.html" class="el_package">com.meva.finance.dto.request</a> &gt; <span class="el_source">CategoryDto.java</span></div><h1>CategoryDto.java</h1><pre class="source lang-java linenums">package com.meva.finance.dto.request;
+
+import com.meva.finance.entity.Category;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+<span class="nc bnc" id="L10" title="All 30 branches missed.">@Data</span>
+@Getter
+<span class="pc" id="L12">@Setter</span>
+public class CategoryDto {
+
+<span class="nc" id="L15">    private Integer id;</span>
+<span class="nc" id="L16">    private String description;</span>
+<span class="nc" id="L17">    private List&lt;SubCategoryDto&gt; subCategoryRequests;</span>
+
+<span class="fc" id="L19">    public CategoryDto() {</span>
+<span class="fc" id="L20">    }</span>
+
+<span class="nc" id="L22">    public CategoryDto(Integer id, String description) {</span>
+<span class="nc" id="L23">        this.id = id;</span>
+<span class="nc" id="L24">        this.description = description;</span>
+<span class="nc" id="L25">    }</span>
+
+    public Category convert(Category category) {
+<span class="fc" id="L28">        category.setId(this.id);</span>
+<span class="fc" id="L29">        category.setDescription(this.description);</span>
+
+<span class="fc" id="L31">        return category;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L36">        return &quot;CategoryRequest{&quot; +</span>
+                &quot;id=&quot; + id +
+                &quot;, description='&quot; + description + '\'' +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
