@@ -17,6 +17,10 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
@@ -90,6 +94,39 @@ class CategoryServiceTest {
         } catch (Exception ex) {
             Assertions.assertEquals(ex.getMessage(), "Category not found");
         }
+    }
+
+    @Test
+    void descriptionSubCategoryVaziaOuMenorQueTresLetras() {
+        subCategoryRequest.setDescription("Oi");
+        subCategoryRequest.setCategoryRequestId(ID);
+        Integer idCategory = subCategoryRequest.getCategoryRequestId();
+
+        SubCategory subCategory = subCategoryRequest.convert(new SubCategory());
+
+        Mockito.when(categoryRepository.findById(idCategory)).thenReturn(categoryOpt);
+
+        try {
+            categoryService.saveSubCategory(subCategoryRequest);
+        } catch (Exception ex) {
+            Assertions.assertEquals(ex.getMessage(), "description vazio ou menor que 3");
+        }
+    }
+
+    @Test
+    void listaCategory() {
+
+        List<Category> categoryList = Arrays.asList(
+                new Category(1, "Alimentos"),
+                new Category(2, "Jogos")
+        );
+
+        Mockito.when(categoryRepository.findAll()).thenReturn(categoryList);
+
+        List<Category> lista = categoryService.buscaTodasCategory();
+
+        Assertions.assertNotNull(categoryList);
+        Assertions.assertEquals(categoryList, lista);
     }
 
 

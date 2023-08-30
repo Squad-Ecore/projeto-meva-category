@@ -8,3 +8,4 @@
 /home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/api/ControllerTest.java
 /home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/dto/response/CategoryResponseTest.java
 /home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/exceptionCustom/restExceptionHandler/RestExceptionHandlerTest.java
+/home/cristian/workspace/meva/projeto-meva-category/src/test/java/com/meva/finance/dto/request/CategoryDtoTest.java
