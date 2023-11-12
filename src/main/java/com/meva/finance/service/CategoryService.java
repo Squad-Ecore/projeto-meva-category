@@ -29,6 +29,12 @@ public class CategoryService {
     public Category saveCategory(CategoryDto categoryDto) {
         Category category = categoryDto.convert(new Category());
 
+        String nomeCategoryMinusculo = category.getDescription();
+        nomeCategoryMinusculo = nomeCategoryMinusculo.toLowerCase();
+
+
+        category.setDescription(nomeCategoryMinusculo);
+
         return categoryRepository.save(category);
     }
 
@@ -41,6 +47,11 @@ public class CategoryService {
         if (!categoryOpt.isPresent()) {
             throw new ValidException("Category not found");
         }
+
+        String descriptionMinusculo = subCategoryDto.getDescription();
+        descriptionMinusculo = descriptionMinusculo.toLowerCase();
+
+        subCategoryDto.setDescription(descriptionMinusculo);
 
         SubCategory subCategory = subCategoryDto.convert(new SubCategory());
         subCategory.setCategory(categoryOpt.get());
@@ -56,7 +67,7 @@ public class CategoryService {
 
 
     private void validDescriptionSubCategory(SubCategory subCategory) {
-            String description = subCategory.getDescription();
+        String description = subCategory.getDescription();
 
         if (description.isEmpty() || description.length() < 3) {
             throw new ValidException("description vazio ou menor que 3");
@@ -65,7 +76,7 @@ public class CategoryService {
 
 
     public Integer buscaCategoryIdNaDescription(String description) {
-
+        description.toLowerCase();
         String[] palavras = description.split("\\s+");
 
         for (String palavra : palavras) {
