@@ -2,9 +2,9 @@ com/meva/finance/dto/request/SubCategoryRequestTest.class
 com/meva/finance/entity/SubCategoryTest.class
 com/meva/finance/api/ControllerTest.class
 com/meva/finance/dto/request/CategoryDtoTest.class
-com/meva/finance/service/CategoryServiceTest.class
 com/meva/finance/exceptionCustom/custons/FieldMessageTest.class
 com/meva/finance/exceptionCustom/restExceptionHandler/RestExceptionHandlerTest.class
+com/meva/finance/service/CategoryServiceTest.class
 com/meva/finance/ApplicationTest.class
 com/meva/finance/dto/response/CategoryResponseTest.class
 com/meva/finance/entity/CategoryTest.class

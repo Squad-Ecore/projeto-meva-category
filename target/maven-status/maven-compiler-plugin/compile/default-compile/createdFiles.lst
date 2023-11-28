@@ -5,8 +5,8 @@ com/meva/finance/api/Controller.class
 com/meva/finance/entity/Category.class
 com/meva/finance/exceptionCustom/custons/FieldMessage.class
 com/meva/finance/exceptionCustom/restExceptionHandler/RestExceptionHandler.class
-com/meva/finance/Application.class
 com/meva/finance/repository/SubCategoryRepository.class
+com/meva/finance/Application.class
 com/meva/finance/dto/request/CategoryDto.class
 com/meva/finance/service/CategoryService.class
 com/meva/finance/repository/CategoryRepository.class

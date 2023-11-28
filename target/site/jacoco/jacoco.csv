@@ -6,7 +6,7 @@ scaffold-java,com.meva.finance,Application,0,12,0,0,0,4,0,3,0,3
 scaffold-java,com.meva.finance.entity,SubCategory,25,150,17,13,0,11,14,13,0,12
 scaffold-java,com.meva.finance.entity,Category,19,166,14,16,0,12,11,16,0,12
 scaffold-java,com.meva.finance.config,SwaggerConfig,0,14,0,0,0,6,0,2,0,2
-scaffold-java,com.meva.finance.service,CategoryService,0,124,2,10,0,27,2,10,0,6
+scaffold-java,com.meva.finance.service,CategoryService,0,145,2,10,0,34,2,10,0,6
 scaffold-java,com.meva.finance.api,Controller,0,42,0,0,0,10,0,6,0,6
 scaffold-java,com.meva.finance.exceptionCustom.restExceptionHandler,RestExceptionHandler,0,16,0,0,0,3,0,2,0,2
 scaffold-java,com.meva.finance.dto.request,SubCategoryDto,72,116,24,6,0,10,13,15,1,12

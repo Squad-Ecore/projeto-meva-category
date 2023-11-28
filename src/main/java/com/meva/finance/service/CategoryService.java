@@ -82,7 +82,7 @@ public class CategoryService {
         for (String palavra : palavras) {
             if (palavra.length() >= 3) {
 
-                Optional<SubCategory> subOpt = subCategoryRepository.findByDescription(palavra);
+                Optional<SubCategory> subOpt = subCategoryRepository.findByNameLike("%" + palavra + "%");
                 if (subOpt.isPresent()) {
                     return subOpt.get().getCategory().getId();
                 }
